@@ -1,0 +1,71 @@
+import { Fragment, useState, useEffect, useMemo } from 'react';
+import { useSelector, useDispatch } from 'react-redux'
+import { useHistory, useLocation, useParams } from "react-router-dom";
+import Cookies from 'js-cookie';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import CustomLoader from './content/LoadingIndicator/CustomLoader';
+// import Header from 'src/components/navbarMenu/header/Header';
+// import SideNavbarMenue from 'src/components/navbarMenu/sideNavbarMenu/SideNavbarMenu';
+// import BottomNavbarMenu from 'src/components/navbarMenu/bottomMenue/BottomNavbarMenu';
+import NavBarHookBootstrap from 'src/components/navbarMenu/NavBarHookBootstrap';
+
+
+
+
+function Layout(props) {
+    // // ----------Localization hooks & Router Hooks-------------
+    const [history, location, params] = [useHistory(), useLocation(), useParams()]
+
+    // // ----------Props & context & ref ------------------------------
+
+
+
+    // // ----------redux store useDispatch & useSelector --------------------
+    // const dispatch = useDispatch()
+    // // // 2nd way to get data ==> by using useSelector
+    // const reducerState = useSelector((state) => (state));
+    // let userReducer = reducerState.userReducer
+
+    const [isAuthenticated, setIsAuthenticated] = useState(false)
+
+
+    useEffect(() => {
+        const handleEvent = () => {
+            let cookieToken = Cookies.get('reduxToolkitToken');
+            if (!!cookieToken && isAuthenticated !== true) {
+                setIsAuthenticated(true)
+            } else if (!cookieToken && isAuthenticated === true) {
+                setIsAuthenticated(false)
+            }
+        }
+        window.addEventListener('click', handleEvent);
+        handleEvent()
+    }, [history, location, params])
+
+
+    return (
+        <Fragment >
+            <ToastContainer />
+            <CustomLoader />
+            <NavBarHookBootstrap isAuthenticated={isAuthenticated} />
+            {/* {isAuthLogin &&
+                <Fragment>
+                    <Header />
+                    <SideNavbarMenue />
+                    <BottomNavbarMenu />
+                </Fragment>
+            } */}
+            <div style={layoutWrapper_style}>
+                {props.children}
+            </div>
+        </Fragment>
+    );
+}
+
+export default Layout;
+
+
+const layoutWrapper_style = {
+    minHeight: "90vh"
+};
