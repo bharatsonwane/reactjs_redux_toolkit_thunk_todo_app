@@ -1,0 +1,28 @@
+SASS 7-1 Folder Structure
+---------------------------
+
+1) abstracts Folder
+    1. function
+    2. mixins
+    3. variables
+
+2) base Folder
+    1. animations
+    2. base
+    3. topography
+    4. utilities
+
+3) components Folder
+    1. all global component styles
+
+4) layout Folder
+    1. all global layout styles
+
+5) pages
+    1. all global pages styles
+
+6) theme
+    1. all global theme styles
+
+7) vendors
+    1. all vendors styles

@@ -17,12 +17,25 @@ export const createTaskActions = createAsyncThunk(
 );
 
 
+// // RETRIEVE TASK LIST ACTION
+export const retrieveTaskListActions = createAsyncThunk(
+    "task/retrieveList",
+    async (model, { rejectWithValue }) => {
+        try {
+            const response = await axiosConfig().get(`/todo/retrieveList`)
+            return response.data;
+        } catch (error) {
+            return rejectWithValue([], { data: error.response.data });
+        }
+    }
+);
+
 // // RETRIEVE TASK ACTION
 export const retrieveTaskActions = createAsyncThunk(
     "task/retrieveTask",
     async (model, { rejectWithValue }) => {
         try {
-            const response = await axiosConfig().get(`/todo/retrieve`)
+            const response = await axiosConfig().get(`/todo/retrieve/${model}`) // model == taskId
             return response.data;
         } catch (error) {
             return rejectWithValue([], { data: error.response.data });
@@ -50,7 +63,7 @@ export const deleteTaskActions = createAsyncThunk(
     async (model, { rejectWithValue }) => {
         try {
             const response = await axiosConfig().delete(`/todo/${model}`)
-            store.dispatch(retrieveTaskActions()) // // DISPATCH RETRIEVE TASK ACTIONS
+            store.dispatch(retrieveTaskListActions()) // // DISPATCH RETRIEVE TASK ACTIONS
             return response.data;
         } catch (error) {
             return rejectWithValue([], { data: error.response.data });

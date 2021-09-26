@@ -1,0 +1,54 @@
+// *,
+// *::after,
+// *::before {
+//     margin: 0;
+//     padding: 0;
+//     box-sizing: inherit;
+// }
+
+// html {
+//     // This defines value of 1 rem in px and default value is 1rem = 16px.
+//     font-size: 100%; //  => 1 rem = 16px
+
+//     // @include mediaDesktopFirst(xl) {
+//     //     // 1200px < width < 1400px ==> default value
+//     //     font-size: 100%; //1 rem = 16px, 16/16 = 100%
+//     // }
+
+//     @include mediaDesktopFirst(lg) {
+//         //  width < 1200px
+//         font-size: 93.75%; //1 rem = 15px, 15/16 = 93.75%
+//     }
+
+//     @include mediaDesktopFirst(md) {
+//         // width < 992px
+//         font-size: 87.5%; //1 rem = 14px, 14/16 = 87.5%
+//     }
+
+//     @include mediaDesktopFirst(sm) {
+//         // width < 768px
+//         font-size: 81.25%; //1 rem = 13px, 13/16 = 81.25%
+//     }
+//     @include mediaDesktopFirst(xs) {
+//         // width < 576px
+//         font-size: 81.25%; //1 rem = 13px, 13/16 = 81.25%
+//     }
+//     @include mediaDesktopFirst(xxl) {
+//         // width > 1400px
+//         font-size: 81.25%; //1 rem = 13px, 18/16 = 81.25%
+//     }
+// }
+
+// body {
+//     box-sizing: border-box;
+//     padding: 1.875rem;
+
+//     @include mediaDesktopFirst(md) {
+//         padding: 0;
+//     }
+// }
+
+// ::selection {
+//     background-color: $color-primary;
+//     color: $color-white;
+// }

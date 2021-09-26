@@ -28,11 +28,13 @@ function Layout(props) {
     // let userReducer = reducerState.userReducer
 
     const [isAuthenticated, setIsAuthenticated] = useState(false)
-
+    const [userRole, setUserRole] = useState("")
 
     useEffect(() => {
         const handleEvent = () => {
             let cookieToken = Cookies.get('reduxToolkitToken');
+            let userRole = localStorage.getItem('userRole');
+            setUserRole(userRole)
             if (!!cookieToken && isAuthenticated !== true) {
                 setIsAuthenticated(true)
             } else if (!cookieToken && isAuthenticated === true) {
@@ -48,7 +50,7 @@ function Layout(props) {
         <Fragment >
             <ToastContainer />
             <CustomLoader />
-            <NavBarHookBootstrap isAuthenticated={isAuthenticated} />
+            <NavBarHookBootstrap isAuthenticated={isAuthenticated} userRole={userRole} />
             {/* {isAuthLogin &&
                 <Fragment>
                     <Header />

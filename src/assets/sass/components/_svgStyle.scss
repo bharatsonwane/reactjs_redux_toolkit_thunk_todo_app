@@ -1,0 +1,24 @@
+.svgStyle {
+    cursor: pointer;
+    display: inline-flex;
+    justify-content: center !important;
+    align-items: center !important;
+    margin: 0.3rem;
+    padding: 0.3rem;
+    border-radius: 0.4rem;
+    background: #f8f9fa;
+    &:hover {
+        background: #6993ff;
+    }
+
+    &__filterBlue {
+        filter: invert(51%) sepia(84%) saturate(586%) hue-rotate(190deg) brightness(97%) contrast(92%);
+        &:hover {
+            filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(241deg) brightness(103%) contrast(103%);
+        }
+    }
+
+    &__filterGray {
+        filter: invert(54%) sepia(0%) saturate(0%) hue-rotate(337deg) brightness(93%) contrast(91%);
+    }
+}

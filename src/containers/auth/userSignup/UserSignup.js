@@ -27,14 +27,14 @@ function UserSignup(props) {
     const [userFormState, setUserFormState] = useState({
         formData: {
             email: "",
-            fullName: "",
+            forename: "",
             dob: "",
             password: "",
             confirmPassword: "",
         },
         formError: {
             emailErr: "",
-            fullNameErr: "",
+            forenameErr: "",
             dobErr: "",
             passwordErr: "",
             confirmPasswordErr: "",
@@ -44,8 +44,8 @@ function UserSignup(props) {
 
 
     // destructure state
-    const { email, fullName, dob, password, confirmPassword } = userFormState.formData;
-    const { emailErr, fullNameErr, dobErr, passwordErr, confirmPasswordErr, } = userFormState.formError
+    const { email, forename, dob, password, confirmPassword } = userFormState.formData;
+    const { emailErr, forenameErr, dobErr, passwordErr, confirmPasswordErr, } = userFormState.formError
 
     // // ----------hooks useEffect--------------------------------------------------
 
@@ -58,11 +58,11 @@ function UserSignup(props) {
         handleValidateEmailId(e.target.value)
     }
 
-    const handlefullNameInputChange = (e) => {
+    const handleForenameInputChange = (e) => {
         let newUserFormState = { ...userFormState }
-        newUserFormState.formData.fullName = e.target.value
+        newUserFormState.formData.forename = e.target.value
         setUserFormState({ ...userFormState, newUserFormState })
-        handleValidateFullName(e.target.value)
+        handleValidateForename(e.target.value)
     }
 
     const handleUserDOBInputChange = (e) => {
@@ -90,11 +90,11 @@ function UserSignup(props) {
     // // HANDLE ALL VALIDATION
     const handleValidateAll = () => {
         let isValiduserEmailId = handleValidateEmailId(userFormState.formData.email)
-        let isValidFullName = handleValidateFullName(userFormState.formData.fullName)
+        let isValidforename = handleValidateForename(userFormState.formData.forename)
         let isValidDOB = handleValidateDOB(userFormState.formData.dob)
         let isValidPassword = handleValidatePassword(userFormState.formData.password)
         let isValidconfirmPassword = handleValidateConfirmPassword(userFormState.formData.confirmPassword)
-        return isValiduserEmailId && isValidFullName && isValidDOB && isValidPassword && isValidconfirmPassword
+        return isValiduserEmailId && isValidforename && isValidDOB && isValidPassword && isValidconfirmPassword
     }
 
 
@@ -123,34 +123,34 @@ function UserSignup(props) {
         return isValidReturn
     }
 
-    const handleValidateFullName = (fullName) => {
-        let fullNameValue = fullName.trim()
-        let fullNameErr = ""
+    const handleValidateForename = (forename) => {
+        let forenameValue = forename.trim()
+        let forenameErr = ""
         let isValidReturn = false;
         const regExp = /^[a-zA-Z ]+$/
-        if (fullNameValue === "") {
-            fullNameErr = t("Full name must not be empty")
+        if (forenameValue === "") {
+            forenameErr = t("Full name must not be empty")
         }
         else {
-            if (fullNameValue.match(regExp)) {
-                if (fullNameValue.length < 5) {
-                    fullNameErr = t("Full name must contain at least 5 characters")
+            if (forenameValue.match(regExp)) {
+                if (forenameValue.length < 5) {
+                    forenameErr = t("Full name must contain at least 5 characters")
                 }
-                else if (fullNameValue.length > 15) {
-                    fullNameErr = t("Full name must not exceed 15 characters")
+                else if (forenameValue.length > 15) {
+                    forenameErr = t("Full name must not exceed 15 characters")
                 }
                 else {
-                    fullNameErr = ""
+                    forenameErr = ""
                     isValidReturn = true
                 }
             }
             else {
-                fullNameErr = t('Full name must contain only alphabet.')
+                forenameErr = t('Full name must contain only alphabet.')
             }
         }
 
         // // ###1st way to update state in loop (here forEach loop)###
-        userFormState.formError.fullNameErr = fullNameErr
+        userFormState.formError.forenameErr = forenameErr
         setUserFormState(prevState => ({ ...prevState, ...userFormState }))
         return isValidReturn
     }
@@ -227,7 +227,7 @@ function UserSignup(props) {
         if (handleValidateAll()) {
             let userFormStateData = {
                 email: userFormState.formData.email,
-                fullName: userFormState.formData.fullName,
+                forename: userFormState.formData.forename,
                 dob: userFormState.formData.dob,
                 password: userFormState.formData.password
             }
@@ -243,14 +243,14 @@ function UserSignup(props) {
         setUserFormState({
             formData: {
                 email: "",
-                fullName: "",
+                forename: "",
                 dob: "",
                 password: "",
                 confirmPassword: "",
             },
             formError: {
                 emailErr: "",
-                fullNameErr: "",
+                forenameErr: "",
                 dobErr: "",
                 passwordErr: "",
                 confirmPasswordErr: "",
@@ -267,16 +267,16 @@ function UserSignup(props) {
                     <div>
                         <div className={allClass("", "formField col", mdl)}>
                             <label className={allClass("", "formLable", mdl)} >{t("E-mail")}:</label>
-                            <input disabled={isFormUpdate} type="email" name="fullName" value={email} onChange={e => handleEmailInputChange(e)} className={allClass("text-field", "formInput", mdl)} placeholder={t("Enter E-mail.")} /><br></br>
+                            <input disabled={isFormUpdate} type="email" name="forename" value={email} onChange={e => handleEmailInputChange(e)} className={allClass("text-field", "formInput", mdl)} placeholder={t("Enter E-mail.")} /><br></br>
                         </div>
                         <small style={{ color: "red", position: "relative", }}>{emailErr}</small>
                     </div>
                     <div>
                         <div className={allClass("", "formField col", mdl)}>
                             <label className={allClass("", "formLable", mdl)} >{t("Full Name.")}:</label>
-                            <input type="text" name="fullName" value={fullName} onChange={e => handlefullNameInputChange(e)} className={allClass("text-field", "formInput", mdl)} placeholder={t("Enter User's Full Name.")} /><br></br>
+                            <input type="text" name="forename" value={forename} onChange={e => handleForenameInputChange(e)} className={allClass("text-field", "formInput", mdl)} placeholder={t("Enter User's Full Name.")} /><br></br>
                         </div>
-                        <small style={{ color: "red", position: "relative", }}>{fullNameErr}</small>
+                        <small style={{ color: "red", position: "relative", }}>{forenameErr}</small>
                     </div>
 
                     <div>
@@ -310,7 +310,7 @@ function UserSignup(props) {
                         </div>
                         :
                         <div className={allClass("field-btn", "formButton", mdl)}>
-                            <button type='button' onClick={event => handleCreateNewUser()} className={allClass("btn btn-success", "buttonStyl", mdl)}>{t("Creat New User")}</button>
+                            <button type='button' onClick={event => handleCreateNewUser()} className={allClass("btn btn-success", "buttonStyl", mdl)}>{t("Register Manager")}</button>
                             <button type="reset" onClick={event => handleResetForm(event)} className={allClass("btn btn-secondary", "buttonStyl", mdl)} >{t("Reset")}</button>
                             <NavLink to='/'><button className={allClass("btn btn-outline-primary mr-2", "buttonStyl", mdl)}>Cancel</button></NavLink>
                         </div>

@@ -50,7 +50,7 @@ const axiosConfig = () => {
                 //dispatch action using store to show token expire popup-----
                 // store.dispatch(tokenExpiryAction.start());
                 // Cookies.remove('reduxToolkitToken')
-                // window.location.pathname = "/user/login"
+                window.location.pathname = "/"
                 return new Promise((resolve, reject) => {
                     reject(error);
                 });

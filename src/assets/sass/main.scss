@@ -1,0 +1,41 @@
+/*
+In this file only GLOBAL SASS File added & 
+LOCAL SCOPE SASS file added in that perticular LOCAL component or page.
+*/
+
+// SASS VENDORS
+// @import "./vendors/style.scss";
+
+// SASS THEME
+
+// SASS ABSTRACTS
+@import "abstracts/functions";
+@import "abstracts/mixins";
+@import "abstracts/variables";
+
+// SASS BASE
+@import "base/animations";
+@import "base/base";
+@import "base/typography";
+@import "base/utilities";
+
+// SASS COMPONENTS
+@import "components/bg-video";
+@import "components/button";
+@import "components/card";
+@import "components/employeeActivationModal";
+@import "components/form";
+@import "components/header";
+@import "components/richTextEditorContainer";
+@import "components/svgStyle";
+@import "components/switchToggle";
+@import "components/table";
+
+// SASS LAYOUT
+
+// SASS PAGES
+@import "pages/dashboard";
+@import "pages/deviationDetailModal";
+@import "pages/employee";
+@import "pages/masterTaskListModal";
+@import "pages/taskPage";

@@ -1,0 +1,31 @@
+// // React BootStrap Class
+// // class for React Bootstrap model content
+
+/* Important part */
+.modal {
+  // display: block !important;
+  &-content {
+    min-width: 40vw;
+    height: 90vh;
+  }
+}
+.masterTaskModal {
+  &__Header {
+  }
+  &__checkBox {
+    margin-top: 12px;
+  }
+  &__ToggleHeader {
+    margin-left: 30px !important;
+    margin-top: -22px !important;
+    height: 30px !important;
+  }
+}
+
+.task-instruction-span {
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

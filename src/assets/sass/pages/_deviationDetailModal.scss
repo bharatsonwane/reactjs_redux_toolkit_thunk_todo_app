@@ -1,0 +1,57 @@
+.deviationDetail {
+    text-align: -webkit-center;
+    margin: 0.625rem;
+    padding: 0.625rem;
+    width: 100%;
+    margin-left: 0rem;
+    margin-top: 2rem;
+}
+
+.deviationDetail th {
+    width: 10rem;
+    border: 0.0625rem solid #dddddd;
+    text-align: left;
+    padding: 0.5rem;
+    min-width: 11rem;
+}
+
+.deviationDetail td {
+    width: max-content;
+    border: 0.0625rem solid #dddddd;
+    text-align: left;
+    padding: 0.5rem;
+}
+
+.deviationDetail tr:nth-child(even) {
+    background-color: #eeebeb;
+}
+
+.deviationImage {
+    height: 100px;
+    width: 100px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    cursor: pointer;
+    margin-top: 5rem;
+}
+.deviationEnlargedImage{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    cursor: pointer;
+}
+.deviationmodal{
+    // height: 80% !important;
+}
+// .switchButton{
+//     color: brown !important;
+//     background-color: black !important;
+// }
+
+.MuiSwitch-colorPrimary.Mui-checked {
+    color: #17c191 !important;
+}
+.MuiSwitch-colorPrimary.Mui-checked + .MuiSwitch-track {
+    background-color: #17c191 !important;
+}

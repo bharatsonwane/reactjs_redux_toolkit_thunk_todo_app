@@ -1,0 +1,31 @@
+@mixin tableSort {
+    display: inline-block;
+    margin-left: 1em;
+    font-weight: 800;
+    color: black;
+    cursor: pointer;
+}
+
+thead {
+    span.notSort,
+    span.ascending,
+    span.descending {
+        cursor: pointer;
+    }
+
+    // CSS Combinators ==> Descendant Selector
+    span.notSort::after {
+        @include tableSort;
+        content: "↓↑";
+    }
+
+    span.ascending::after {
+        @include tableSort;
+        content: "↓";
+    }
+
+    span.descending::after {
+        @include tableSort;
+        content: "↑";
+    }
+}

@@ -1,11 +1,14 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { createTaskActions, retrieveTaskActions, updateTaskActions, deleteTaskActions } from "./task_action"
+import { createTaskActions, retrieveTaskListActions, retrieveTaskActions, updateTaskActions, deleteTaskActions } from "./task_action"
 
 const initialCompetitionState = {
     isLoading: false,
 
     createTaskResponse: null,
     createTaskError: null,
+
+    retrieveTaskListResponse: null,
+    retrieveTaskListError: null,
 
     retrieveTaskResponse: null,
     retrieveTaskError: null,
@@ -37,17 +40,29 @@ export const taskSlice = createSlice({
                 state.createTaskError = action.meta
             })
 
+            // RETREIVE TASK LIST
+            .addCase(retrieveTaskListActions.pending, (state, action) => {
+                state.isLoading = true
+            })
+            .addCase(retrieveTaskListActions.fulfilled, (state, action) => {
+                state.isLoading = false;
+                state.retrieveTaskListResponse = action.payload;
+            })
+            .addCase(retrieveTaskListActions.rejected, (state, action) => {
+                state.isLoading = false;
+                // state.retrieveTaskListError = action.meta;
+            })
+
+
             // RETREIVE TASK
             .addCase(retrieveTaskActions.pending, (state, action) => {
                 state.isLoading = true
             })
             .addCase(retrieveTaskActions.fulfilled, (state, action) => {
-                console.log("bharatAction", action)
                 state.isLoading = false;
                 state.retrieveTaskResponse = action.payload;
             })
             .addCase(retrieveTaskActions.rejected, (state, action) => {
-                console.log("bharatAction", action)
                 state.isLoading = false;
                 // state.retrieveTaskError = action.meta;
             })
@@ -71,6 +86,7 @@ export const taskSlice = createSlice({
                 state.isLoading = true
             })
             .addCase(deleteTaskActions.fulfilled, (state, action) => {
+                console.log("action.payload", action.payload)
                 state.isLoading = false;
                 state.deleteTaskResponse = action.payload;
             })

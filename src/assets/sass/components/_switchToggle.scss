@@ -1,0 +1,10 @@
+.switch-success {
+    @include switchToggleSizeColor("md", green);
+}
+.switch-primary {
+    @include switchToggleSizeColor("md");
+}
+
+.switch-deviated {
+    @include switchToggleSizeColor("md", red);
+}

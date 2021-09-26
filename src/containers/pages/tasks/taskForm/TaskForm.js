@@ -20,9 +20,7 @@ function TaskForm(props) {
     // // ----------redux store useDispatch & useSelector --------------------
     const dispatch = useDispatch()
     // // 2nd way to get data ==> by using useSelector
-    const reducerState = useSelector(
-        (state) => (state)
-    );
+    const reducerState = useSelector((state) => (state));
     let taskReducer = reducerState.taskReducer
 
 
@@ -175,9 +173,6 @@ function TaskForm(props) {
                 // // ###1st way to update state in loop (here forEach loop)###
                 err.titleErr = titleErr
                 setErr(prevState => ({ ...prevState, ...err }))
-
-                // // ###2nd way to update state in loop (here forEach loop)###
-                // setErr(prevState => ({ ...prevState, titleErr: titleErr })) // useState hook if we update errState normaly in loop then only last state will update 
                 break;
 
             case "uiTech":
@@ -270,7 +265,7 @@ function TaskForm(props) {
                         </label>
                         <label className={mdl.formBackEndLabel}>PHP
                             <input type="radio" name="backEndTech" value="php" onChange={e => handleInputChange(e)} checked={technology.backEndTech === 'php'} />
-                        </label >
+                        </label>
                     </div>
                     <small style={{ color: "red" }}>{backEndTechErr}</small>
                 </div>

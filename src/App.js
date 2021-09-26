@@ -1,6 +1,10 @@
 import React, { Fragment, Suspense } from 'react'
+// // import library styles files
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
+
+// // import styles sass main file
+import "src/assets/sass/main.scss"
 
 // // redux 
 import { Provider } from 'react-redux'
