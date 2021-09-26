@@ -16,7 +16,7 @@ import { createEmployeeActions } from 'src/redux/employee_redux/employee_action'
  * email ==> text
  * dob ==> date
  * gender ==> radio button
- * employeeRole ==> dropdown
+ * userRole ==> dropdown
  * programmingLanguageKnown ==> checkbox
  * address ==> text area
  * password ==>
@@ -48,7 +48,7 @@ function EmployeeForm() {
             email: "",
             dob: "",
             gender: "",
-            employeeRole: "",
+            userRole: "",
             programmingLanguageKnown: [],
             address: "",
             password: "",
@@ -62,7 +62,7 @@ function EmployeeForm() {
             email: false,
             dob: false,
             gender: false,
-            employeeRole: false,
+            userRole: false,
             programmingLanguageKnown: false,
             address: false,
             password: false,
@@ -76,7 +76,7 @@ function EmployeeForm() {
             email: "",
             dob: "",
             gender: "",
-            employeeRole: "",
+            userRole: "",
             programmingLanguageKnown: "",
             address: "",
             password: "",
@@ -303,9 +303,9 @@ function EmployeeForm() {
                         <div className={allClass("", "formField col", mdl)} >
                             <div className={mdl.formLable}  >Employee Role:</div>
                             <select
-                                id="employeeRole"
-                                name='employeeRole'
-                                value={values.employeeRole}
+                                id="userRole"
+                                name='userRole'
+                                value={values.userRole}
                                 onChange={handleFormInputChange}
                                 onBlur={(e) => handleFormInputChange(e, true)}
                                 className="form-dropdown text-field"
@@ -315,7 +315,7 @@ function EmployeeForm() {
                                 <option value="tester" > tester </option>
                             </select>
                         </div>
-                        <small style={{ color: "red" }}>{touched.employeeRole ? errors.employeeRole : ""}</small>
+                        <small style={{ color: "red" }}>{touched.userRole ? errors.userRole : ""}</small>
                     </div>
 
                     <div className={allClass("", "formField col", mdl)}>

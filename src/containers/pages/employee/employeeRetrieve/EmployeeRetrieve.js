@@ -5,7 +5,7 @@ import { useHistory } from "react-router-dom"
 import mdl from './employeeRetrieve.module.css'
 import { allClass } from 'src/helper/customHooks/customModuleClassMethod'
 import { toast } from 'react-toastify';
-import { retrieveEmployeeActions, deleteEmployeeActions } from "src/redux/employee_redux/employee_action"
+import { retrieveEmployeeListActions, deleteEmployeeActions } from "src/redux/employee_redux/employee_action"
 import { useTranslation } from "react-i18next";
 import EmployeeActivationModal from './content/EmployeeActivationModal'
 
@@ -47,18 +47,18 @@ function EmployeeRetrieve(props) {
 
     let isLoading = employeeReducer.isLoading
     // // ***To check responce/error after success/error action from reducer***
-    const { retrieveEmployeeResponse, retrieveEmployeeError, deleteEmployeeResponse, deleteEmployeeError } = employeeReducer
-    const prevPropsState = usePrevious({ retrieveEmployeeResponse, retrieveEmployeeError, deleteEmployeeResponse, deleteEmployeeError }) // custom hook to get previous props & state
+    const { retrieveEmployeeListResponse, retrieveEmployeeListError, deleteEmployeeResponse, deleteEmployeeError } = employeeReducer
+    const prevPropsState = usePrevious({ retrieveEmployeeListResponse, retrieveEmployeeListError, deleteEmployeeResponse, deleteEmployeeError }) // custom hook to get previous props & state
 
     // called when its dependency changes i.e. like componentDidUpdate()
     useEffect(() => {
         if (prevPropsState) {
-            if (prevPropsState.retrieveEmployeeResponse !== retrieveEmployeeResponse && retrieveEmployeeResponse) {
+            if (prevPropsState.retrieveEmployeeListResponse !== retrieveEmployeeListResponse && retrieveEmployeeListResponse) {
                 let newState = { ...state }
-                newState.employeeList = retrieveEmployeeResponse
+                newState.employeeList = retrieveEmployeeListResponse
                 setState({ ...newState })
             }
-            if (prevPropsState.retrieveEmployeeError !== retrieveEmployeeError && retrieveEmployeeError) {
+            if (prevPropsState.retrieveEmployeeListError !== retrieveEmployeeListError && retrieveEmployeeListError) {
                 setTimeout(() => { toast.error("Something went wrong.") }, 500);
             }
             else if (prevPropsState.deleteEmployeeResponse !== deleteEmployeeResponse && deleteEmployeeResponse) {
@@ -73,7 +73,7 @@ function EmployeeRetrieve(props) {
 
     // // ----------handler functions--------------------------------------------------
     const handleRetrieveEmployee = () => {
-        dispatch(retrieveEmployeeActions())
+        dispatch(retrieveEmployeeListActions())
     }
 
     const handleDeleteEmployee = (id) => {
@@ -88,8 +88,8 @@ function EmployeeRetrieve(props) {
 
     const handleDetailEmployee = (employee) => {
         // // 1st way using props.history
-        history.push(`/employee/detail/${employee.id}`, {
-            employee: employee   // single employee
+        history.push(`/employee/detail/${employee.userId}`, {
+            // employee: employee   // single employee
         })
     }
 

@@ -17,12 +17,25 @@ export const createEmployeeActions = createAsyncThunk(
 );
 
 
+// // RETRIEVE Employee List ACTION
+export const retrieveEmployeeListActions = createAsyncThunk(
+    "employee/retrieveList",
+    async (model, { rejectWithValue }) => {
+        try {
+            const response = await axiosConfig().get(`/employee/retrieveList`)
+            return response.data;
+        } catch (error) {
+            return rejectWithValue([], { data: error.response.data });
+        }
+    }
+);
+
 // // RETRIEVE Employee ACTION
 export const retrieveEmployeeActions = createAsyncThunk(
     "employee/retrieve",
     async (model, { rejectWithValue }) => {
         try {
-            const response = await axiosConfig().get(`/employee/retrieve`)
+            const response = await axiosConfig().get(`/employee/retrieve/${model}`) // model == userId
             return response.data;
         } catch (error) {
             return rejectWithValue([], { data: error.response.data });
@@ -50,7 +63,7 @@ export const updateEmployeeActivationStatusActions = createAsyncThunk(
     async (model, { rejectWithValue }) => {
         try {
             const response = await axiosConfig().put(`/employee/update/userActivationStatus`, model)
-            store.dispatch(retrieveEmployeeActions()) // // DISPATCH RETRIEVE Employee ACTIONS
+            store.dispatch(retrieveEmployeeListActions()) // // DISPATCH RETRIEVE Employee ACTIONS
             return response.data;
         } catch (error) {
             return rejectWithValue([], { data: error.response.data });
@@ -66,7 +79,7 @@ export const deleteEmployeeActions = createAsyncThunk(
     async (model, { rejectWithValue }) => {
         try {
             const response = await axiosConfig().delete(`/employee/${model}`)
-            store.dispatch(retrieveEmployeeActions()) // // DISPATCH RETRIEVE Employee ACTIONS
+            store.dispatch(retrieveEmployeeListActions()) // // DISPATCH RETRIEVE Employee ACTIONS
             return response.data;
         } catch (error) {
             return rejectWithValue([], { data: error.response.data });

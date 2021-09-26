@@ -1,11 +1,14 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { createEmployeeActions, retrieveEmployeeActions, updateEmployeeActions, updateEmployeeActivationStatusActions, deleteEmployeeActions } from "./employee_action"
+import { createEmployeeActions, retrieveEmployeeListActions, retrieveEmployeeActions, updateEmployeeActions, updateEmployeeActivationStatusActions, deleteEmployeeActions } from "./employee_action"
 
 const initialCompetitionState = {
     isLoading: false,
 
     createEmployeeResponse: null,
     createEmployeeError: null,
+
+    retrieveEmployeeListResponse: null,
+    retrieveEmployeeListError: null,
 
     retrieveEmployeeResponse: null,
     retrieveEmployeeError: null,
@@ -40,19 +43,32 @@ export const employeeSlice = createSlice({
                 state.createEmployeeError = action.meta
             })
 
-            // RETREIVE EMPLOYEE
+            // RETREIVE EMPLOYEE LIST
+            .addCase(retrieveEmployeeListActions.pending, (state, action) => {
+                state.isLoading = true
+            })
+            .addCase(retrieveEmployeeListActions.fulfilled, (state, action) => {
+                state.isLoading = false;
+                state.retrieveEmployeeListResponse = action.payload;
+            })
+            .addCase(retrieveEmployeeListActions.rejected, (state, action) => {
+                console.log("bharatAction", action)
+                state.isLoading = false;
+                // state.retrieveEmployeeListError = action.meta;
+            })
+
+            // RETREIVE EMPLOYEE 
             .addCase(retrieveEmployeeActions.pending, (state, action) => {
                 state.isLoading = true
             })
             .addCase(retrieveEmployeeActions.fulfilled, (state, action) => {
-                console.log("bharatAction", action)
                 state.isLoading = false;
                 state.retrieveEmployeeResponse = action.payload;
             })
             .addCase(retrieveEmployeeActions.rejected, (state, action) => {
                 console.log("bharatAction", action)
                 state.isLoading = false;
-                // state.retrieveEmployeeError = action.meta;
+                state.retrieveEmployeeError = action.meta;
             })
 
             // UPDATE EMPLOYEE

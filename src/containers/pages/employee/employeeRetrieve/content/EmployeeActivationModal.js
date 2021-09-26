@@ -4,7 +4,7 @@ import { Modal, Button, Tooltip, OverlayTrigger } from 'react-bootstrap';
 import { useTranslation } from "react-i18next";
 import { useLocation } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
-import { updateEmployeeActivationStatusActions, retrieveEmployeeActions } from 'src/redux/employee_redux/employee_action';
+import { updateEmployeeActivationStatusActions, retrieveEmployeeListActions } from 'src/redux/employee_redux/employee_action';
 
 
 
