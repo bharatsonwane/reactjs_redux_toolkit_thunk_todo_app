@@ -1,5 +1,5 @@
 .switch-success {
-    @include switchToggleSizeColor("md", green);
+    @include switchToggleSizeColor("md", orangered, green);
 }
 .switch-primary {
     @include switchToggleSizeColor("md");

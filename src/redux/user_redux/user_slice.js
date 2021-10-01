@@ -32,13 +32,13 @@ export const userSlice = createSlice({
       .addCase(signInOwnerActions.fulfilled, (state, action) => {
         let tokenExpires = new Date(new Date().getTime() + 5 * 60 * 60 * 1000);
         Cookies.set('reduxToolkitToken', action.payload.token, { expires: tokenExpires })
-        localStorage.setItem("userRole", action.payload.role)
+        localStorage.setItem("userRole", action.payload.userRole)
         state.isLoading = false;
         state.signInOwnerResponce = action.payload;
       })
       .addCase(signInOwnerActions.rejected, (state, action) => {
         state.isLoading = false;
-        state.signInOwnerError = action.dmeta.data;
+        state.signInOwnerError = action.meta;
       })
 
 
@@ -52,7 +52,7 @@ export const userSlice = createSlice({
       })
       .addCase(registerUserActions.rejected, (state, action) => {
         state.isLoading = false;
-        state.registerUserError = action.meta.data;
+        state.registerUserError = action.meta;
       })
 
       // // SIGNIN USER REDUCER
@@ -62,12 +62,14 @@ export const userSlice = createSlice({
       .addCase(signInUserActions.fulfilled, (state, action) => {
         let tokenExpires = new Date(new Date().getTime() + 5 * 60 * 60 * 1000);
         Cookies.set('reduxToolkitToken', action.payload.token, { expires: tokenExpires })
+        localStorage.setItem("userRole", action.payload.userRole)
+        localStorage.setItem("divisionName", action.payload.divisionName)
         state.isLoading = false;
         state.signInUserResponce = action.payload;
       })
       .addCase(signInUserActions.rejected, (state, action) => {
         state.isLoading = false;
-        state.signInUserError = action.meta.data;
+        state.signInUserError = action.meta;
       })
   },
 });

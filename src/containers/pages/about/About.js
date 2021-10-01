@@ -2,10 +2,6 @@ import React, { useEffect } from 'react'
 
 function About() {
 
-    useEffect(() => {
-        let token = "TestingTokenForinterceptor"
-        localStorage.setItem('taskToken', JSON.stringify(token))
-    }, [])
 
     return (
         <div className="container">

@@ -42,8 +42,8 @@ function UserSignin() {
 
     // // ----------hooks useEffect--------------------------------------------------
     // // ***To check responce/error after success/error action from reducer***
-    const { isLoading, signInUserResponce, createUserError } = userReducer
-    const prevPropsState = usePrevious({ isLoading, signInUserResponce, createUserError }) // custom hook to get previous props & state
+    const { isLoading, signInUserResponce, signInUserError } = userReducer
+    const prevPropsState = usePrevious({ isLoading, signInUserResponce, signInUserError }) // custom hook to get previous props & state
     useEffect(() => {
         if (prevPropsState) {
             if (prevPropsState.signInUserResponce !== signInUserResponce && signInUserResponce) { // // createTaskResponse !== null && createTaskResponse !== undefined
@@ -53,7 +53,7 @@ function UserSignin() {
                 }, 500);
                 history.push("/task/retrieve")
             }
-            else if (prevPropsState.createUserError !== createUserError && createUserError) {
+            else if (prevPropsState.signInUserError !== signInUserError && signInUserError) {
                 setTimeout(() => {
                     toast.error(t("Not able to Sign In."))
                 }, 500);

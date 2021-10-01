@@ -1,16 +1,20 @@
-import React, { Fragment, useState } from 'react'
-import { NavLink } from "react-router-dom"
+import React, { Fragment, useState, useEffect } from 'react'
 import mdl from "./userSignup.module.scss"
 import { allClass } from 'src/helper/customHooks/customModuleClassMethod';
 import { useTranslation } from 'react-i18next';
+import { useHistory, Link, NavLink } from "react-router-dom"
 import { useSelector, useDispatch } from 'react-redux'
 import { registerUserActions } from "src/redux/user_redux/user_action"
+import { useStateCallback, usePrevious } from 'src/helper/customHooks/customHooks' // custome useStateCallback hook
+import { toast } from 'react-toastify';
+
 
 
 function UserSignup(props) {
 
     // // ----------Localization hooks & Router Hooks-------------
     const { t, i18n } = useTranslation('common');
+    let history = useHistory()
 
 
     // // ----------Props & context & ref ------------------------------
@@ -21,11 +25,12 @@ function UserSignup(props) {
     // // ----------redux store useDispatch & useSelector --------------------
     const dispatch = useDispatch()
     const reducerState = useSelector((state) => (state));
-
+    let userReducer = reducerState.userReducer
 
     // // ----------hooks useState--------------------------------------------------
     const [userFormState, setUserFormState] = useState({
         formData: {
+            divisionName: "",
             email: "",
             forename: "",
             dob: "",
@@ -33,6 +38,7 @@ function UserSignup(props) {
             confirmPassword: "",
         },
         formError: {
+            divisionNameErr: "",
             emailErr: "",
             forenameErr: "",
             dobErr: "",
@@ -44,13 +50,36 @@ function UserSignup(props) {
 
 
     // destructure state
-    const { email, forename, dob, password, confirmPassword } = userFormState.formData;
-    const { emailErr, forenameErr, dobErr, passwordErr, confirmPasswordErr, } = userFormState.formError
+    const { divisionName, email, forename, dob, password, confirmPassword } = userFormState.formData;
+    const { divisionNameErr, emailErr, forenameErr, dobErr, passwordErr, confirmPasswordErr, } = userFormState.formError
 
     // // ----------hooks useEffect--------------------------------------------------
+    // // ***To check responce/error after success/error action from reducer***
+    const { registerUserResponce, registerUserError, } = userReducer
+    const prevPropsState = usePrevious({ registerUserResponce, registerUserError, }) // custom hook to get previous props & state
+    useEffect(() => {
+        if (prevPropsState) {
+            if (prevPropsState.registerUserResponce !== registerUserResponce && registerUserResponce) { // // registerUserResponce !== null && registerUserResponce !== undefined
+                history.push('/')
+                handleResetForm()
+                setTimeout(() => { toast.success("Manager register successfully") }, 500);
+            }
+            else if (prevPropsState.registerUserError !== registerUserError && registerUserError) {
+                setTimeout(() => { toast.error("Something wrong happened.. Not able to register Manager.") }, 500);
+            }
+        }
+    }, [userReducer])
+
 
 
     // // HANDLE INPUT CHANGE
+    const handleDivisionNameInputChange = (e) => {
+        let newUserFormState = { ...userFormState }
+        newUserFormState.formData.divisionName = e.target.value
+        setUserFormState({ ...userFormState, newUserFormState })
+        handleValidateDivisionName(e.target.value)
+    }
+
     const handleEmailInputChange = (e) => {
         let newUserFormState = { ...userFormState }
         newUserFormState.formData.email = e.target.value
@@ -99,6 +128,29 @@ function UserSignup(props) {
 
 
     // // HANDLE INDIVIDUAL VALIDATION
+    const handleValidateDivisionName = (division) => {
+        let divisonNameValue = division.trim()
+        let divisionNameErr = ""
+        let isValidReturn = false;
+        const regExp = /^[a-zA-Z ]+$/
+        if (divisonNameValue === "") {
+            divisionNameErr = t("Division name must not be empty")
+        }
+        else if (divisonNameValue.match(regExp)) {
+            if (divisonNameValue.length < 3) {
+                divisionNameErr = t("Division name must contain at least 3 characters")
+            }
+            else if (divisonNameValue.length > 15) {
+                divisionNameErr = t("Division name must not exceed 15 characters")
+            }
+            else {
+                divisionNameErr = ""
+                isValidReturn = true
+            }
+        }
+
+    }
+
     const handleValidateEmailId = (email) => {
         let emailValue = email.trim()
         let emailErr = ""
@@ -226,6 +278,7 @@ function UserSignup(props) {
     const handleCreateNewUser = () => {
         if (handleValidateAll()) {
             let userFormStateData = {
+                divisionName: userFormState.formData.divisionName,
                 email: userFormState.formData.email,
                 forename: userFormState.formData.forename,
                 dob: userFormState.formData.dob,
@@ -242,6 +295,7 @@ function UserSignup(props) {
     const handleResetForm = () => {
         setUserFormState({
             formData: {
+                divisionName: "",
                 email: "",
                 forename: "",
                 dob: "",
@@ -249,6 +303,7 @@ function UserSignup(props) {
                 confirmPassword: "",
             },
             formError: {
+                divisionNameErr: "",
                 emailErr: "",
                 forenameErr: "",
                 dobErr: "",
@@ -264,6 +319,13 @@ function UserSignup(props) {
         <Fragment>
             <div>
                 <form name="myForm" className={allClass("", "formStyle", mdl)}>
+                    <div>
+                        <div className={allClass("", "formField col", mdl)}>
+                            <label className={allClass("", "formLable", mdl)} >{t("Division Name")}:</label>
+                            <input disabled={isFormUpdate} type="text" name="forename" value={divisionName} onChange={e => handleDivisionNameInputChange(e)} className={allClass("text-field", "formInput", mdl)} placeholder={t("Enter Divison Name.")} /><br></br>
+                        </div>
+                        <small style={{ color: "red", position: "relative", }}>{divisionNameErr}</small>
+                    </div>
                     <div>
                         <div className={allClass("", "formField col", mdl)}>
                             <label className={allClass("", "formLable", mdl)} >{t("E-mail")}:</label>

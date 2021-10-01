@@ -72,4 +72,33 @@ export const deleteTaskActions = createAsyncThunk(
 );
 
 
+// // COMPLETE TASK ACTION
+export const updateTaskCompleteStatusActions = createAsyncThunk(
+    "task/updateTaskCompleteStatus",
+    async (model, { rejectWithValue }) => {
+        try {
+            const response = await axiosConfig().put(`/todo/updateCompleteStatus`, model)
+            store.dispatch(retrieveTaskListActions()) // // DISPATCH RETRIEVE TASK ACTIONS
+            return response.data;
+        } catch (error) {
+            return rejectWithValue([], { data: error.response.data });
+        }
+    }
+);
+
+
+// // COMPLETE TASK ACTION
+export const updateTaskTestingReportActions = createAsyncThunk(
+    "task/updateTaskTestingReport",
+    async (model, { rejectWithValue }) => {
+        try {
+            const response = await axiosConfig().put(`/todo/updateTestingReport/`, model)
+            store.dispatch(retrieveTaskListActions()) // // DISPATCH RETRIEVE TASK ACTIONS
+            return response.data;
+        } catch (error) {
+            return rejectWithValue([], { data: error.response.data });
+        }
+    }
+);
+
 

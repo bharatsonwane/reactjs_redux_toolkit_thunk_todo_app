@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { createTaskActions, retrieveTaskListActions, retrieveTaskActions, updateTaskActions, deleteTaskActions } from "./task_action"
+import { createTaskActions, retrieveTaskListActions, retrieveTaskActions, updateTaskActions, deleteTaskActions, updateTaskCompleteStatusActions, updateTaskTestingReportActions } from "./task_action"
 
 const initialCompetitionState = {
     isLoading: false,
@@ -18,6 +18,12 @@ const initialCompetitionState = {
 
     deleteTaskResponse: null,
     deleteTaskError: null,
+
+    updateTaskCompleteStatusResponse: null,
+    updateTaskCompleteStatusError: null,
+
+    updateTaskTestingReportResponse: null,
+    updateTaskTestingReportError: null,
 };
 
 
@@ -53,7 +59,6 @@ export const taskSlice = createSlice({
                 // state.retrieveTaskListError = action.meta;
             })
 
-
             // RETREIVE TASK
             .addCase(retrieveTaskActions.pending, (state, action) => {
                 state.isLoading = true
@@ -80,7 +85,6 @@ export const taskSlice = createSlice({
                 state.updateTaskError = action.meta;
             })
 
-
             // DELETE TASK
             .addCase(deleteTaskActions.pending, (state, action) => {
                 state.isLoading = true
@@ -93,6 +97,32 @@ export const taskSlice = createSlice({
             .addCase(deleteTaskActions.rejected, (state, action) => {
                 state.isLoading = false;
                 state.deleteTaskError = action.meta;
+            })
+
+            // COMPLETE TASK ACTION
+            .addCase(updateTaskCompleteStatusActions.pending, (state, action) => {
+                state.isLoading = true
+            })
+            .addCase(updateTaskCompleteStatusActions.fulfilled, (state, action) => {
+                state.isLoading = false;
+                state.updateTaskCompleteStatusResponse = action.payload;
+            })
+            .addCase(updateTaskCompleteStatusActions.rejected, (state, action) => {
+                state.isLoading = false;
+                state.updateTaskCompleteStatusError = action.meta;
+            })
+
+            // UPDATE  TASK  TESTING REPORT ACTION
+            .addCase(updateTaskTestingReportActions.pending, (state, action) => {
+                state.isLoading = true
+            })
+            .addCase(updateTaskTestingReportActions.fulfilled, (state, action) => {
+                state.isLoading = false;
+                state.updateTaskTestingReportResponse = action.payload;
+            })
+            .addCase(updateTaskTestingReportActions.rejected, (state, action) => {
+                state.isLoading = false;
+                state.updateTaskTestingReportError = action.meta;
             })
     },
 });

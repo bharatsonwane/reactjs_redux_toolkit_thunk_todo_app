@@ -72,13 +72,15 @@
 }
 
 // // Switch Toggle Size & color mixins
-@mixin switchToggleSizeColor($switchSize: "sm", $switchCheckedColor: "blue") {
+@mixin switchToggleSizeColor($switchSize: "sm", $switchCheckedColor: "blue", $switchUncheckedColor: "default") {
     // // SIZE -----------------------------------------
     // YOU CAN PUT ALL RESOLUTION HERE
     // sm - DEFAULT, md, lg, xl
 
     --switch_unchecked_slider_color: #9e9e9e;
+    --switch_unchecked_slider_opacity: 1;
     --switch_unchecked_knob_color: #fafafa;
+
     --switch_checked_color: #{$switchCheckedColor};
 
     --switch_slider_height: 0.875rem;
@@ -96,6 +98,12 @@
     } @else if $switchSize == "xl" {
         --switch_slider_height: 2rem;
         --switch_knob_size: 3rem;
+    }
+
+    @if $switchUncheckedColor != "default" {
+        --switch_unchecked_slider_opacity: 0.5;
+        --switch_unchecked_slider_color: #{$switchUncheckedColor};
+        --switch_unchecked_knob_color: #{$switchUncheckedColor};
     }
 
     display: inline-block;
@@ -129,8 +137,9 @@
         left: 1px;
         width: calc(var(--switch_slider_height) * 2.5);
         height: var(--switch_slider_height);
-        background-color: var(--switch_unchecked_slider_color);
         border-radius: calc(var(--switch_slider_height) / 2);
+        opacity: var(--switch_unchecked_slider_opacity);
+        background-color: var(--switch_unchecked_slider_color);
     }
 
     label:after {
