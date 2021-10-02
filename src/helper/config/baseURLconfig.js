@@ -2,7 +2,7 @@
 // Api base url depend on environment
 const handleGetApiBaseURL = () => {
     let apiBaseUrlList = {
-        devApiUrl: 'http://localhost:8080',
+        devApiUrl: 'http://localhost:8888',
         testApiUrl: 'http://localhost:3005',
         prodApiUrl: 'http://localhost:3005'
     }

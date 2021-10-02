@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import Cookies from 'js-cookie';
-import { signInOwnerActions, registerUserActions, signInUserActions, retrieveUserDataActions } from "./user_action"
+import { signInOwnerActions, registerUserActions, signInUserActions, retrieveUserProfileActions, } from "./user_action"
 
 
 const initialCompetitionState = {
@@ -15,6 +15,10 @@ const initialCompetitionState = {
 
   signInUserResponce: null,
   signInUserError: null,
+
+  retrieveUserProfileResponce: null,
+  retrieveUserProfileError: null,
+
 };
 
 
@@ -70,6 +74,20 @@ export const userSlice = createSlice({
       .addCase(signInUserActions.rejected, (state, action) => {
         state.isLoading = false;
         state.signInUserError = action.meta;
+      })
+
+
+      // // RETRIEVE USER PROFILE
+      .addCase(retrieveUserProfileActions.pending, (state, action) => {
+        state.isLoading = true
+      })
+      .addCase(retrieveUserProfileActions.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.retrieveUserProfileResponce = action.payload;
+      })
+      .addCase(retrieveUserProfileActions.rejected, (state, action) => {
+        state.isLoading = false;
+        state.retrieveUserProfileError = action.meta;
       })
   },
 });

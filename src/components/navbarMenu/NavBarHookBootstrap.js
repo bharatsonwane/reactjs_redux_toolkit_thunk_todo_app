@@ -27,7 +27,7 @@ function NavBarHookBootstrap(props) {
     }
 
     return (
-        <div>
+        <Fragment>
             <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
                 <Navbar.Brand exact to="#home">Redux Toolkit</Navbar.Brand>
                 <Navbar.Toggle aria-controls="responsive-navbar-nav" />
@@ -105,7 +105,7 @@ function NavBarHookBootstrap(props) {
                                 </NavDropdown>
                                 <NavDropdown title={t("Users")} id="collasible-nav-dropdown">
                                     <NavDropdown.Item>
-                                        <NavLink exact to='/user/profile'>
+                                        <NavLink exact to='/user/retrieveProfile'>
                                             <div className={allClass("", "linkBlack", mdl)}>
                                                 {t("User Profile")}
                                             </div>
@@ -196,7 +196,7 @@ function NavBarHookBootstrap(props) {
                                     </NavDropdown>
                                     <NavDropdown title={t("Users")} id="collasible-nav-dropdown">
                                         <NavDropdown.Item>
-                                            <NavLink exact to='/user/profile'>
+                                            <NavLink exact to='/user/retrieveProfile'>
                                                 <div className={allClass("", "linkBlack", mdl)}>
                                                     {t("User Profile")}
                                                 </div>
@@ -275,7 +275,7 @@ function NavBarHookBootstrap(props) {
                                         </NavDropdown>
                                         <NavDropdown title={t("Users")} id="collasible-nav-dropdown">
                                             <NavDropdown.Item>
-                                                <NavLink exact to='/user/profile'>
+                                                <NavLink exact to='/user/retrieveProfile'>
                                                     <div className={allClass("", "linkBlack", mdl)}>
                                                         {t("User Profile")}
                                                     </div>
@@ -384,7 +384,7 @@ function NavBarHookBootstrap(props) {
                 }
 
             </Navbar>
-        </div>
+        </Fragment>
     )
 }
 

@@ -6,10 +6,10 @@ import axiosConfig from "src/helper/config/axiosConfig";
 
 // // SIGNIN USER ACTIONS
 export const signInOwnerActions = createAsyncThunk(
-    "owner/login",
+    "user/authJwt/owner/login",
     async (model, { rejectWithValue }) => {
         try {
-            const response = await axiosConfig().post(`/authJwt/user/owner/login`, model)
+            const response = await axiosConfig().post(`/user/authJwt/owner/login`, model)
             return response.data;
         } catch (error) {
             return rejectWithValue([], { data: error.response.data });
@@ -21,10 +21,10 @@ export const signInOwnerActions = createAsyncThunk(
 
 // // REGISTER USER ACTIONS
 export const registerUserActions = createAsyncThunk(
-    "user/register",
+    "/user/manager/register",
     async (model, { rejectWithValue }) => {
         try {
-            const response = await axiosConfig().post(`/authJWT/user/manager/register`, model)
+            const response = await axiosConfig().post(`/user/manager/register`, model)
             return response.data;
         } catch (error) {
             return rejectWithValue([], { data: error.response.data });
@@ -35,10 +35,10 @@ export const registerUserActions = createAsyncThunk(
 
 // // SIGNIN USER ACTIONS
 export const signInUserActions = createAsyncThunk(
-    "/authJWT/user/employee/login",
+    "user/authJwt/employee/login",
     async (model, { rejectWithValue }) => {
         try {
-            const response = await axiosConfig().post(`/authJWT/user/employee/login`, model)
+            const response = await axiosConfig().post(`/user/authJwt/employee/login`, model)
             return response.data;
         } catch (error) {
             return rejectWithValue([], { data: error.response.data });
@@ -56,15 +56,14 @@ export const userTokenExpiryActions = (model) => async (dispatch) => {
 }
 
 
-// // RETRIEVE USER ACTIONS
-export const retrieveUserDataActions = createAsyncThunk(
-    "user/signin",
+export const retrieveUserProfileActions = createAsyncThunk(
+    "user/retrieveProfile",
     async (model, { rejectWithValue }) => {
         try {
-            const response = await axiosConfig().post(`/authJWT`, model)
+            const response = await axiosConfig().get(`/user/retrieveProfile`)
             return response.data;
         } catch (error) {
-            return rejectWithValue([], { data: error.response.data });
+            return rejectWithValue([], { data: error.response.data })
         }
     }
-);
+)

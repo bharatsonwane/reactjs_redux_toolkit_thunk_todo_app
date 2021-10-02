@@ -406,7 +406,7 @@ function EmployeeForm() {
                     </div>
 
                     <div className="field-btn">
-                        <button type="button" onClick={() => handleFormDataSubmit()} className={allClass("btn btn-success", "buttonStyl", mdl)}>Send Feedback</button>
+                        <button type="button" onClick={() => handleFormDataSubmit()} className={allClass("btn btn-success", "buttonStyl", mdl)}>Create Employee</button>
                         <button type="reset" onClick={() => handleFormReset()} className={allClass("btn btn-secondary", "buttonStyl", mdl)} >Reset</button>
                         <Link to={`/task/retrieve`} type="button" className={allClass("btn btn-outline-primary mr-2", "buttonStyl", mdl)}>Cancel </Link>
                     </div>
