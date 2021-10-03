@@ -56,10 +56,10 @@ function TaskRetrieve(props) {
                 // setTaskList(JSON.parse(retrieveTaskListResponse))
                 setTaskList(retrieveTaskListResponse)
             }
-            if (prevPropsState.retrieveTaskListError !== retrieveTaskListError && retrieveTaskListError) {
+            else if (prevPropsState.retrieveTaskListError !== retrieveTaskListError && retrieveTaskListError) {
                 setTimeout(() => { toast.error("Something went wrong.") }, 500);
             }
-            else if (prevPropsState.deleteTaskResponse !== deleteTaskResponse && deleteTaskResponse) {
+            if (prevPropsState.deleteTaskResponse !== deleteTaskResponse && deleteTaskResponse) {
                 setTimeout(() => { toast.success("Task deleted successfully") }, 500);
             }
             else if (prevPropsState.deleteTaskError !== deleteTaskError && deleteTaskError) {

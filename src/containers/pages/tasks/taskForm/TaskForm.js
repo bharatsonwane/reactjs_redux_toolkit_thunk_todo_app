@@ -31,8 +31,8 @@ function TaskForm(props) {
 
 
     // // ----------hooks useEffect--------------------------------------------------
-    const { id, date, title, description, technology, library } = task;
-    const { idErr, titleErr, uiTechErr, backEndTechErr, } = err
+    const { date, title, description, technology, library } = task;
+    const { titleErr, uiTechErr, backEndTechErr, } = err
 
     // // ***To check responce/error after success/error action from reducer***
     const { createTaskResponse, createTaskError, updateTaskResponse, updateTaskError, isLoading } = taskReducer
@@ -87,17 +87,17 @@ function TaskForm(props) {
 
     // // ----------handler functions--------------------------------------------------
     const handleCreateTask = async (e) => {
-        const nameFormList = ["id", "title", "uiTech", "backEndTech"]
+        const nameFormList = ["title", "uiTech", "backEndTech"]
         nameFormList.forEach((nameForm) => {
             formValidation(task, nameForm)
         })
-        if (id && title && technology.uiTech && technology.backEndTech && !idErr && !titleErr && !uiTechErr && !backEndTechErr) {
+        if (title && technology.uiTech && technology.backEndTech && !titleErr && !uiTechErr && !backEndTechErr) {
             dispatch(createTaskActions(task))
         }
     }
 
     const handleUpdateTask = async (e) => {
-        if (id && title && technology.uiTech && technology.backEndTech && !idErr && !titleErr && !uiTechErr && !backEndTechErr) {
+        if (title && technology.uiTech && technology.backEndTech && !titleErr && !uiTechErr && !backEndTechErr) {
             dispatch(updateTaskActions(task))
         }
     }
@@ -105,7 +105,6 @@ function TaskForm(props) {
     const handleResetTask = () => {
         // // 1st way to update nested state.
         setTask({
-            id: "",
             date: "",
             title: "",
             description: "",
@@ -113,7 +112,6 @@ function TaskForm(props) {
             library: { redux: false, saga: false, numpy: false, pandas: false },
         })
         setErr({
-            idErr: "",
             titleErr: "",
             uiTechErr: "",
             backEndTechErr: "",
@@ -123,28 +121,6 @@ function TaskForm(props) {
 
     const formValidation = (task, nameForm) => {
         switch (nameForm) {
-            // // id validation
-            case 'id':
-                let idErr = ""
-                const idValue = task.id
-                if (idValue === "" || null) {
-                    idErr = "ID must not be empty"
-                }
-                else if (idValue.trim().length < 3) {
-                    idErr = 'Id must be at least 3 characters!'
-                }
-                else {
-                    idErr = ""
-                }
-
-                // // ###1st way to update state in loop (here forEach loop)###
-                err.idErr = idErr
-                setErr(prevState => ({ ...prevState, ...err }))
-
-                // // ###2nd way to update state in loop (here forEach loop)###
-                // setErr(prevState => ({ ...prevState, idErr: idErr })) // useState hook if we update errState normaly in loop then only last state will update 
-                break;
-
             // // title validation
             case 'title':
                 let titleErr = ""
@@ -173,6 +149,10 @@ function TaskForm(props) {
                 // // ###1st way to update state in loop (here forEach loop)###
                 err.titleErr = titleErr
                 setErr(prevState => ({ ...prevState, ...err }))
+
+                // // ###2nd way to update state in loop (here forEach loop)###
+                // setErr(prevState => ({ ...prevState, titleErr: titleErr })) // useState hook if we update errState normaly in loop then only last state will update 
+
                 break;
 
             case "uiTech":
@@ -217,14 +197,6 @@ function TaskForm(props) {
     return (
         <div>
             <form name="myForm" className={mdl.formStyle}>
-                <div>
-                    <div className={allClass("", "formField col", mdl)}>
-                        <label className={mdl.formLable} >Task id:</label>
-                        <input disabled={formEdit} type="text" name="id" value={id} onChange={e => handleInputChange(e)} className={allClass("text-field", "formInput", mdl)} placeholder="Enter task ID" /><br></br>
-                    </div>
-                    <small style={{ color: "red" }}>{idErr}</small>
-                </div>
-
                 <div className={allClass("", "formField col", mdl)}>
                     <label className={mdl.formLable} >Date:</label>
                     <input type="date" name="date" value={date} onChange={e => handleInputChange(e)} className={allClass("text-field", "formInput", mdl)} />

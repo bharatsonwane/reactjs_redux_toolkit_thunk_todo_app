@@ -1,3 +1,10 @@
+.navbarMenue__container {
+    position: fixed;
+    /* overflow: hidden; */
+    top: 0;
+    width: 100%;
+}
+
 .nav_dropdown {
     left: 30px;
 }
@@ -11,6 +18,6 @@
 .linkBlack {
     color: black;
 }
-.hyperlink{
+.hyperlink {
     text-decoration: none;
 }

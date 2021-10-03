@@ -1,13 +1,21 @@
-import React, { useEffect, createContext } from 'react'
+import React, { useState, useEffect, createContext } from 'react'
+import { useStateCallback, usePrevious } from 'src/helper/customHooks/customHooks' // custome useStateCallback hook
 import { useSelector, useDispatch } from 'react-redux'
+import { useHistory } from "react-router-dom"
 import { useParams } from "react-router-dom"
 import TaskForm from '../taskForm/TaskForm'
 import { retrieveTaskActions } from 'src/redux/task_redux/task_action'
+import { toast } from 'react-toastify';
 
 
 export const taskUpdateContext = createContext()
 
 function TaskUpdate(props) {
+    // // ----------Localization hooks & Router Hooks-------------
+    let history = useHistory()
+
+
+    // // ----------Props & context & ref ------------------------------
     let params = useParams()
     let id = params.id
     const isTaskUpdate = true
@@ -18,18 +26,40 @@ function TaskUpdate(props) {
     // // 2nd way to get data ==> by using useSelector
     const reducerState = useSelector((state) => (state));
     let taskReducer = reducerState.taskReducer
-    let retrieveTaskResponse = taskReducer.retrieveTaskResponse
+
+
+
+    const [state, setState] = useState({
+        retrieveTaskResponse: null,
+    })
 
 
     useEffect(() => {
         dispatch(retrieveTaskActions(id))
     }, [])
 
+
+    const { retrieveTaskResponse, retrieveTaskError } = taskReducer
+    const prevPropsState = usePrevious({ retrieveTaskResponse, retrieveTaskError }) // custom hook to get previous props & state
+
+    // called when its dependency changes i.e. like componentDidUpdate()
+    useEffect(() => {
+        if (prevPropsState) {
+            if (prevPropsState.retrieveTaskResponse !== retrieveTaskResponse && retrieveTaskResponse) {
+                setState({ ...state, retrieveTaskResponse: retrieveTaskResponse })
+            }
+            else if (prevPropsState.retrieveTaskError !== retrieveTaskError && retrieveTaskError) {
+                setTimeout(() => { toast.error("Something went wrong.") }, 500);
+                history.push(`/task/retrieve`)
+            }
+        }
+    }, [taskReducer])
+
+
     return (
         <React.Fragment>
             <div>
-                {/* // // 1st way ==> send data to another component ==> by using props  */}
-                {retrieveTaskResponse && <TaskForm taskField={retrieveTaskResponse} isTaskUpdate={isTaskUpdate} />}
+                {state.retrieveTaskResponse && <TaskForm taskField={state.retrieveTaskResponse} isTaskUpdate={isTaskUpdate} />}
             </div>
         </React.Fragment>
     )

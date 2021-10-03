@@ -1,4 +1,6 @@
 import { Fragment, useState, useEffect, useMemo } from 'react';
+import { allClass } from 'src/helper/customHooks/customModuleClassMethod'
+import mdl from "./layoutWrapper.module.css"
 import { useSelector, useDispatch } from 'react-redux'
 import { useHistory, useLocation, useParams } from "react-router-dom";
 import Cookies from 'js-cookie';
@@ -58,16 +60,12 @@ function Layout(props) {
                     <BottomNavbarMenu />
                 </Fragment>
             } */}
-            <div style={layoutWrapper_style}>
+            <main className={allClass("", "layoutWrapper__mainContainer", mdl)}>
                 {props.children}
-            </div>
+            </main>
         </Fragment>
     );
 }
 
 export default Layout;
 
-
-const layoutWrapper_style = {
-    minHeight: "90vh"
-};

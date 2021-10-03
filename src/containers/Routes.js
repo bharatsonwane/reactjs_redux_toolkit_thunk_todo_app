@@ -5,7 +5,6 @@ import { HashRouter, Route, Switch } from 'react-router-dom';
 import LayoutWrapper from "src/components/layout/LayoutWrapper"
 
 import PageNotFound from 'src/containers/pages/pageNotFound/PageNotFound';
-import OwnerRoutes from 'src/containers/OwnerRoutes'
 import AuthRoutes from 'src/containers/auth/AuthRoutes';
 import EmployeeRoutes from 'src/containers/EmployeeRoutes';
 import TaskRoutes from 'src/containers/TaskRoutes';
@@ -27,7 +26,6 @@ function Routes() {
                 <LayoutWrapper>
                     <div className="App">
                         <Switch>
-                            <Route path="/owner" render={(props) => <OwnerRoutes {...props} />} />
                             <Route path="/user" render={(props) => <AuthRoutes {...props} />} />
                             <Route path="/employee" render={(props) => <EmployeeRoutes {...props} />} />
                             <Route path="/task" render={(props) => <TaskRoutes {...props} />} />

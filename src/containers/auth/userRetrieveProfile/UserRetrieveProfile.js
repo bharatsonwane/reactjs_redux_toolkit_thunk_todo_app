@@ -1,5 +1,6 @@
 import React, { Fragment, useState, useEffect } from 'react'
 import { allClass } from 'src/helper/customHooks/customModuleClassMethod';
+import mdl from "./userProfile.module.css"
 import Cookies from 'js-cookie';
 import { usePrevious } from 'src/helper/customHooks/customHooks';
 import { useHistory, Link, NavLink } from "react-router-dom"
@@ -28,7 +29,6 @@ function UserRetrieveProfile() {
     const [state, setState] = useState({
     })
 
-
     // // ----------hooks useEffect--------------------------------------------------
     useEffect(() => {
         dispatch(retrieveUserProfileActions())
@@ -51,13 +51,66 @@ function UserRetrieveProfile() {
     }, [userReducer])
 
 
+    const handleEditProfile = () => {
 
+    }
 
 
 
     return (
         <Fragment>
-            <h>Retrieve Profile</h>
+            <h3>User Profile</h3>
+            {retrieveUserProfileResponce &&
+                <div>
+                    <div>
+                        <Link to={`/task/retrieve`} type="button" className={allClass("btn btn-outline-primary mr-2", "buttonStyl", mdl)}>Retrieve </Link>
+                        <button className={allClass("btn btn-warning", "buttonStyl", mdl)} onClick={(e) => handleEditProfile(retrieveUserProfileResponce)} > Edit </button>
+                    </div>
+                    <div className={mdl.container}>
+                        <table >
+                            <tbody>
+                                {retrieveUserProfileResponce.userRole &&
+                                    <tr>
+                                        <th>User Role</th>
+                                        <td>{retrieveUserProfileResponce.userRole}</td>
+                                    </tr>}
+                                {retrieveUserProfileResponce.divisionName &&
+                                    <tr>
+                                        <th>divisionName</th>
+                                        <td>{retrieveUserProfileResponce.divisionName}</td>
+                                    </tr>}
+                                {retrieveUserProfileResponce.forename &&
+                                    <tr>
+                                        <th>Forename</th>
+                                        <td>{retrieveUserProfileResponce.forename}</td>
+                                    </tr>}
+                                {retrieveUserProfileResponce.surname &&
+                                    <tr>
+                                        <th>Surname</th>
+                                        <td>{retrieveUserProfileResponce.surname}</td>
+                                    </tr>}
+                                {retrieveUserProfileResponce.dob &&
+                                    <tr>
+                                        <th>Date of Birth</th>
+                                        <td>{retrieveUserProfileResponce.dob}</td>
+                                    </tr>}
+                                {retrieveUserProfileResponce.email &&
+                                    <tr>
+                                        <th>Email</th>
+                                        <td>{retrieveUserProfileResponce.email}</td>
+                                    </tr>}
+                                {retrieveUserProfileResponce.programmingLanguageKnown &&
+                                    <tr>
+                                        <th>Programming Language Known</th>
+                                        <td>
+                                            {retrieveUserProfileResponce.programmingLanguageKnown.join(", ")}
+                                        </td>
+                                    </tr>}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            }
         </Fragment>
     )
 }

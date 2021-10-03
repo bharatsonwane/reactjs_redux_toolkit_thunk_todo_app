@@ -5,18 +5,17 @@ import axiosConfig from "src/helper/config/axiosConfig";
 
 
 // // SIGNIN USER ACTIONS
-export const signInOwnerActions = createAsyncThunk(
-    "user/authJwt/owner/login",
+export const signInUserActions = createAsyncThunk(
+    "user/authJwt/login",
     async (model, { rejectWithValue }) => {
         try {
-            const response = await axiosConfig().post(`/user/authJwt/owner/login`, model)
+            const response = await axiosConfig().post(`/user/authJwt/login`, model)
             return response.data;
         } catch (error) {
             return rejectWithValue([], { data: error.response.data });
         }
     }
 );
-
 
 
 // // REGISTER USER ACTIONS
@@ -25,20 +24,6 @@ export const registerUserActions = createAsyncThunk(
     async (model, { rejectWithValue }) => {
         try {
             const response = await axiosConfig().post(`/user/manager/register`, model)
-            return response.data;
-        } catch (error) {
-            return rejectWithValue([], { data: error.response.data });
-        }
-    }
-);
-
-
-// // SIGNIN USER ACTIONS
-export const signInUserActions = createAsyncThunk(
-    "user/authJwt/employee/login",
-    async (model, { rejectWithValue }) => {
-        try {
-            const response = await axiosConfig().post(`/user/authJwt/employee/login`, model)
             return response.data;
         } catch (error) {
             return rejectWithValue([], { data: error.response.data });

@@ -33,25 +33,24 @@ function UserSignup(props) {
             divisionName: "",
             email: "",
             forename: "",
+            surname: "",
             dob: "",
             password: "",
             confirmPassword: "",
         },
         formError: {
-            divisionNameErr: "",
-            emailErr: "",
-            forenameErr: "",
-            dobErr: "",
-            passwordErr: "",
-            confirmPasswordErr: "",
+            divisionName: "",
+            email: "",
+            forename: "",
+            surname: "",
+            dob: "",
+            password: "",
+            confirmPassword: "",
         }
     })
 
+    const { formData, formError } = userFormState
 
-
-    // destructure state
-    const { divisionName, email, forename, dob, password, confirmPassword } = userFormState.formData;
-    const { divisionNameErr, emailErr, forenameErr, dobErr, passwordErr, confirmPasswordErr, } = userFormState.formError
 
     // // ----------hooks useEffect--------------------------------------------------
     // // ***To check responce/error after success/error action from reducer***
@@ -94,6 +93,13 @@ function UserSignup(props) {
         handleValidateForename(e.target.value)
     }
 
+    const handleSurnameInputChange = (e) => {
+        let newUserFormState = { ...userFormState }
+        newUserFormState.formData.surname = e.target.value
+        setUserFormState({ ...userFormState, newUserFormState })
+        handleValidateSurname(e.target.value)
+    }
+
     const handleUserDOBInputChange = (e) => {
         let newUserFormState = { ...userFormState }
         newUserFormState.formData.dob = e.target.value
@@ -118,136 +124,175 @@ function UserSignup(props) {
 
     // // HANDLE ALL VALIDATION
     const handleValidateAll = () => {
+        let isVAlidDivisionName = handleValidateDivisionName(userFormState.formData.divisionName)
         let isValiduserEmailId = handleValidateEmailId(userFormState.formData.email)
-        let isValidforename = handleValidateForename(userFormState.formData.forename)
+        let isValidForename = handleValidateForename(userFormState.formData.forename)
+        let isValidSurname = handleValidateSurname(userFormState.formData.surname)
         let isValidDOB = handleValidateDOB(userFormState.formData.dob)
         let isValidPassword = handleValidatePassword(userFormState.formData.password)
         let isValidconfirmPassword = handleValidateConfirmPassword(userFormState.formData.confirmPassword)
-        return isValiduserEmailId && isValidforename && isValidDOB && isValidPassword && isValidconfirmPassword
+        return isVAlidDivisionName && isValiduserEmailId && isValidForename && isValidSurname && isValidDOB && isValidPassword && isValidconfirmPassword
     }
 
 
     // // HANDLE INDIVIDUAL VALIDATION
     const handleValidateDivisionName = (division) => {
         let divisonNameValue = division.trim()
-        let divisionNameErr = ""
+        let error = ""
         let isValidReturn = false;
         const regExp = /^[a-zA-Z ]+$/
         if (divisonNameValue === "") {
-            divisionNameErr = t("Division name must not be empty")
+            error = t("Division name must not be empty")
         }
         else if (divisonNameValue.match(regExp)) {
             if (divisonNameValue.length < 3) {
-                divisionNameErr = t("Division name must contain at least 3 characters")
+                error = t("Division name must contain at least 3 characters")
             }
             else if (divisonNameValue.length > 15) {
-                divisionNameErr = t("Division name must not exceed 15 characters")
+                error = t("Division name must not exceed 15 characters")
             }
             else {
-                divisionNameErr = ""
+                error = ""
                 isValidReturn = true
             }
         }
+
+        // // ###1st way to update state in loop (here forEach loop)###
+        userFormState.formError.divisionName = error
+        setUserFormState(prevState => ({ ...prevState, ...userFormState }))
+        return isValidReturn
 
     }
 
     const handleValidateEmailId = (email) => {
         let emailValue = email.trim()
-        let emailErr = ""
+        let error = ""
         let isValidReturn = false;
         const regExp = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
         if (emailValue === "") {
-            emailErr = t("email must not be empty")
+            error = t("email must not be empty")
         }
         else {
             if (emailValue.match(regExp)) {
-                emailErr = ""
+                error = ""
                 isValidReturn = true
             }
             else {
-                emailErr = t('Entered email should be valid.')
+                error = t('Entered email should be valid.')
             }
         }
 
         // // ###1st way to update state in loop (here forEach loop)###
-        userFormState.formError.emailErr = emailErr
+        userFormState.formError.email = error
         setUserFormState(prevState => ({ ...prevState, ...userFormState }))
         return isValidReturn
     }
 
     const handleValidateForename = (forename) => {
         let forenameValue = forename.trim()
-        let forenameErr = ""
+        let error = ""
         let isValidReturn = false;
         const regExp = /^[a-zA-Z ]+$/
         if (forenameValue === "") {
-            forenameErr = t("Full name must not be empty")
+            error = t("Forename must not be empty")
         }
         else {
             if (forenameValue.match(regExp)) {
-                if (forenameValue.length < 5) {
-                    forenameErr = t("Full name must contain at least 5 characters")
+                if (forenameValue.length < 2) {
+                    error = t("Forename must contain at least 2 characters")
                 }
                 else if (forenameValue.length > 15) {
-                    forenameErr = t("Full name must not exceed 15 characters")
+                    error = t("Forename must not exceed 15 characters")
                 }
                 else {
-                    forenameErr = ""
+                    error = ""
                     isValidReturn = true
                 }
             }
             else {
-                forenameErr = t('Full name must contain only alphabet.')
+                error = t('Forename must contain only alphabet.')
             }
         }
 
         // // ###1st way to update state in loop (here forEach loop)###
-        userFormState.formError.forenameErr = forenameErr
+        userFormState.formError.forename = error
+        setUserFormState(prevState => ({ ...prevState, ...userFormState }))
+        return isValidReturn
+    }
+
+    const handleValidateSurname = (surname) => {
+        let surnameValue = surname.trim()
+        let error = ""
+        let isValidReturn = false;
+        const regExp = /^[a-zA-Z ]+$/
+        if (surnameValue === "") {
+            error = t("Surname must not be empty")
+        }
+        else {
+            if (surnameValue.match(regExp)) {
+                if (surnameValue.length < 2) {
+                    error = t("Surname must contain at least 2 characters")
+                }
+                else if (surnameValue.length > 15) {
+                    error = t("Surname must not exceed 15 characters")
+                }
+                else {
+                    error = ""
+                    isValidReturn = true
+                }
+            }
+            else {
+                error = t('Surname must contain only alphabet.')
+            }
+        }
+
+        // // ###1st way to update state in loop (here forEach loop)###
+        userFormState.formError.surname = error
         setUserFormState(prevState => ({ ...prevState, ...userFormState }))
         return isValidReturn
     }
 
     const handleValidateDOB = (dob) => {
         let dobValue = dob
-        let dobErr = ""
+        let error = ""
         let isValidReturn = false
 
         if (dobValue === "") {
-            dobErr = "Date of Birth should not be empty."
+            error = "Date of Birth should not be empty."
         }
         else {
-            dobErr = ""
+            error = ""
             isValidReturn = true
         }
 
-        userFormState.formError.dobErr = dobErr
+        userFormState.formError.dob = error
         setUserFormState(prevState => ({ ...prevState, ...userFormState }))
         return isValidReturn
     }
 
     const handleValidatePassword = (password) => {
         let passwordValue = password
-        let passwordErr = ""
+        let error = ""
         let isValidReturn = false
 
         let regExp = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,15}$/;
         if (passwordValue === "") {
-            passwordErr = "Password Should not be empty."
+            error = "Password Should not be empty."
         }
         else if (passwordValue.match(regExp)) {
-            passwordErr = ""
+            error = ""
             isValidReturn = true
         }
         else {
             if (passwordValue.length < 6) {
-                passwordErr = "Password should be at least 6 charecter."
+                error = "Password should be at least 6 charecter."
             }
             else {
-                passwordErr = "Password should contain at least 1 uppercase, 1 lowercase & 1 special character."
+                error = "Password should contain at least 1 uppercase, 1 lowercase & 1 special character."
             }
         }
 
-        userFormState.formError.passwordErr = passwordErr
+        userFormState.formError.password = error
         setUserFormState(prevState => ({ ...prevState, ...userFormState }))
         return isValidReturn
     }
@@ -255,21 +300,21 @@ function UserSignup(props) {
 
     const handleValidateConfirmPassword = (confirmPassword) => {
         let confirmPasswordValue = confirmPassword
-        let confirmPasswordErr = ""
+        let error = ""
         let isValidReturn = false
 
         if (confirmPasswordValue === "") {
-            confirmPasswordErr = "Second Password should not be empty."
+            error = "Second Password should not be empty."
         }
         else if (confirmPasswordValue !== userFormState.formData.password) {
-            confirmPasswordErr = "Both Password should be match."
+            error = "Both Password should be match."
         }
         else {
-            confirmPasswordErr = ""
+            error = ""
             isValidReturn = true
         }
 
-        userFormState.formError.confirmPasswordErr = confirmPasswordErr
+        userFormState.formError.confirmPassword = error
         setUserFormState(prevState => ({ ...prevState, ...userFormState }))
         return isValidReturn
     }
@@ -281,6 +326,7 @@ function UserSignup(props) {
                 divisionName: userFormState.formData.divisionName,
                 email: userFormState.formData.email,
                 forename: userFormState.formData.forename,
+                surname: userFormState.formData.surname,
                 dob: userFormState.formData.dob,
                 password: userFormState.formData.password
             }
@@ -298,17 +344,19 @@ function UserSignup(props) {
                 divisionName: "",
                 email: "",
                 forename: "",
+                surname: "",
                 dob: "",
                 password: "",
                 confirmPassword: "",
             },
             formError: {
-                divisionNameErr: "",
-                emailErr: "",
-                forenameErr: "",
-                dobErr: "",
-                passwordErr: "",
-                confirmPasswordErr: "",
+                divisionName: "",
+                email: "",
+                forename: "",
+                surname: "",
+                dob: "",
+                password: "",
+                confirmPassword: "",
             }
         })
     }
@@ -322,47 +370,53 @@ function UserSignup(props) {
                     <div>
                         <div className={allClass("", "formField col", mdl)}>
                             <label className={allClass("", "formLable", mdl)} >{t("Division Name")}:</label>
-                            <input disabled={isFormUpdate} type="text" name="forename" value={divisionName} onChange={e => handleDivisionNameInputChange(e)} className={allClass("text-field", "formInput", mdl)} placeholder={t("Enter Divison Name.")} /><br></br>
+                            <input disabled={isFormUpdate} type="text" name="forename" value={formData.divisionName} onChange={e => handleDivisionNameInputChange(e)} className={allClass("text-field", "formInput", mdl)} placeholder={t("Enter Divison Name.")} /><br></br>
                         </div>
-                        <small style={{ color: "red", position: "relative", }}>{divisionNameErr}</small>
+                        <small style={{ color: "red", position: "relative", }}>{formError.divisionName}</small>
                     </div>
                     <div>
                         <div className={allClass("", "formField col", mdl)}>
                             <label className={allClass("", "formLable", mdl)} >{t("E-mail")}:</label>
-                            <input disabled={isFormUpdate} type="email" name="forename" value={email} onChange={e => handleEmailInputChange(e)} className={allClass("text-field", "formInput", mdl)} placeholder={t("Enter E-mail.")} /><br></br>
+                            <input disabled={isFormUpdate} type="email" name="forename" value={formData.email} onChange={e => handleEmailInputChange(e)} className={allClass("text-field", "formInput", mdl)} placeholder={t("Enter E-mail.")} /><br></br>
                         </div>
-                        <small style={{ color: "red", position: "relative", }}>{emailErr}</small>
+                        <small style={{ color: "red", position: "relative", }}>{formError.email}</small>
                     </div>
                     <div>
                         <div className={allClass("", "formField col", mdl)}>
-                            <label className={allClass("", "formLable", mdl)} >{t("Full Name.")}:</label>
-                            <input type="text" name="forename" value={forename} onChange={e => handleForenameInputChange(e)} className={allClass("text-field", "formInput", mdl)} placeholder={t("Enter User's Full Name.")} /><br></br>
+                            <label className={allClass("", "formLable", mdl)} >{t("Forename")}:</label>
+                            <input type="text" name="forename" value={formData.forename} onChange={e => handleForenameInputChange(e)} className={allClass("text-field", "formInput", mdl)} placeholder={t("Enter User's Forename.")} /><br></br>
                         </div>
-                        <small style={{ color: "red", position: "relative", }}>{forenameErr}</small>
+                        <small style={{ color: "red", position: "relative", }}>{formError.forename}</small>
                     </div>
-
+                    <div>
+                        <div className={allClass("", "formField col", mdl)}>
+                            <label className={allClass("", "formLable", mdl)} >{t("Surname")}:</label>
+                            <input type="text" name="surname" value={formData.surname} onChange={e => handleSurnameInputChange(e)} className={allClass("text-field", "formInput", mdl)} placeholder={t("Enter User's Surname.")} /><br></br>
+                        </div>
+                        <small style={{ color: "red", position: "relative", }}>{formError.surname}</small>
+                    </div>
                     <div>
                         <div className={allClass("", "formField col", mdl)}>
                             <label className={allClass("", "formLable", mdl)} >{t("Date of Birth")}:</label>
-                            <input type="date" name="dob" value={dob} onChange={e => handleUserDOBInputChange(e)} className={allClass("text-field", "formInput", mdl)} />
+                            <input type="date" name="dob" value={formData.dob} onChange={e => handleUserDOBInputChange(e)} className={allClass("text-field", "formInput", mdl)} />
                         </div>
-                        <small style={{ color: "red", position: "relative", }}>{dobErr}</small>
+                        <small style={{ color: "red", position: "relative", }}>{formError.dob}</small>
                     </div>
 
                     <div>
                         <div className={allClass("", "formField col", mdl)}>
                             <label className={allClass("", "formLable", mdl)}>{t("Enter Password")}:</label>
-                            <input type="password" name="password" value={password} onChange={e => handlePasswordInputChange(e)} className={allClass("text-field", "formInput", mdl)} placeholder={t("Enter Password.")} />
+                            <input type="password" name="password" value={formData.password} onChange={e => handlePasswordInputChange(e)} className={allClass("text-field", "formInput", mdl)} placeholder={t("Enter Password.")} />
                         </div>
-                        <small style={{ color: "red", position: "relative", }}>{passwordErr}</small>
+                        <small style={{ color: "red", position: "relative", }}>{formError.password}</small>
                     </div>
 
                     <div>
                         <div className={allClass("", "formField col", mdl)}>
                             <label className={allClass("", "formLable", mdl)}>{t("Conform Password")}:</label>
-                            <input type="password" name="confirmPassword" value={confirmPassword} onChange={e => handleConfirmPasswordInputChange(e)} className={allClass("text-field", "formInput", mdl)} placeholder={t("Conform Password.")} />
+                            <input type="password" name="confirmPassword" value={formData.confirmPassword} onChange={e => handleConfirmPasswordInputChange(e)} className={allClass("text-field", "formInput", mdl)} placeholder={t("Conform Password.")} />
                         </div>
-                        <small style={{ color: "red", position: "relative", }}>{confirmPasswordErr}</small>
+                        <small style={{ color: "red", position: "relative", }}>{formError.confirmPassword}</small>
                     </div>
 
                     {isFormUpdate === true ?

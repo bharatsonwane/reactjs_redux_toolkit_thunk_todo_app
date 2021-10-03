@@ -76,12 +76,12 @@ function EmployeeRetrieve(props) {
         dispatch(retrieveEmployeeListActions())
     }
 
-    const handleDeleteEmployee = (id) => {
-        dispatch(deleteEmployeeActions(id))
+    const handleDeleteEmployee = (userId) => {
+        dispatch(deleteEmployeeActions(userId))
     }
 
     const handleUpdateEmployee = (employee) => {
-        history.push(`/employee/update/${employee.id}`, {
+        history.push(`/employee/update/${employee.userId}`, {
             employee: employee
         })
     }
@@ -155,7 +155,7 @@ function EmployeeRetrieve(props) {
                                                     src={deleteSvgIcon}
                                                     alt="Delete"
                                                     className="svgStyle__filterBlue"
-                                                    onClick={(e) => handleDeleteEmployee(employee.id)}
+                                                    onClick={(e) => handleDeleteEmployee(employee.userId)}
                                                 />
                                             </span>
                                         </td>
