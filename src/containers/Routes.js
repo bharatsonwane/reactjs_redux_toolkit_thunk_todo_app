@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react'
-import { HashRouter, Route, Switch } from 'react-router-dom';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
 //  layout wrapper
 import LayoutWrapper from "src/components/layout/LayoutWrapper"
@@ -22,7 +22,7 @@ function Routes() {
 
     return (
         <Fragment>
-            <HashRouter>
+            <BrowserRouter>
                 <LayoutWrapper>
                     <div className="App">
                         <Switch>
@@ -38,7 +38,7 @@ function Routes() {
                         </Switch>
                     </div>
                 </LayoutWrapper>
-            </HashRouter>
+            </BrowserRouter>
         </Fragment>
     )
 }
