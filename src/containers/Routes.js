@@ -13,6 +13,7 @@ import SignalrRoutes from 'src/containers/SignalrRoutes';
 
 import Home from "src/containers/pages/home/Home"
 import About from "src/containers/pages/about/About"
+import Images from "src/containers/pages/images/Images"
 import Contact from "src/containers/pages/contact/Contact"
 
 
@@ -32,7 +33,8 @@ function Routes() {
                             <Route path="/feedback" render={(props) => <FeedbackRoutes {...props} />} />
                             <Route path="/signalr" render={(props) => <SignalrRoutes {...props} />} />
                             <Route exact path="/about" render={(props) => <About {...props} />} />
-                            <Route exact path="/contact" render={(props) => <Contact {...props} />} />
+                            <Route exact path="/images" render={(props) => <Images {...props} />} />
+                            <Route exact path="/contactus" render={(props) => <Contact {...props} />} />
                             <Route exact path="/" render={(props) => <Home {...props} />} />
                             <Route component={PageNotFound} />
                         </Switch>

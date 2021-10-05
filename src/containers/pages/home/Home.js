@@ -5,13 +5,13 @@ function Home() {
         <Fragment>
             <h1>Home Page of ToDo App</h1>
 
-            <div class="switch-success">
+            <div className="switch-success">
                 <input type="checkbox" id="1" />
-                <label for="1"></label>
+                <label htmlFor="1"></label>
             </div>
-            <div class="switch-primary">
+            <div className="switch-primary">
                 <input type="checkbox" id="2" />
-                <label for="2"></label>
+                <label htmlFor="2"></label>
             </div>
         </Fragment>
     )

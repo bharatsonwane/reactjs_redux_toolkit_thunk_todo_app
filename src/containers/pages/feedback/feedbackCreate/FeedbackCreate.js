@@ -10,11 +10,6 @@ import * as yup from "yup";
 import { createFeedbackActions } from 'src/redux/feedback_redux/feedback_action';
 
 
-/*
-feedback form filed
-----------------
-are you satisfied with our servce ==> toggle
-*/
 
 function FeedbackCreate() {
     // // ----------Localization hooks & Router Hooks-------------
@@ -64,7 +59,7 @@ function FeedbackCreate() {
             uiTech: "",
             backEndTech: "",
             library: [],
-            satisfiedWithService: true,
+            serviceSatisfaction: true,
             message: ""
         },
 
@@ -97,7 +92,7 @@ function FeedbackCreate() {
                 uiTech: values.uiTech,
                 backEndTech: values.backEndTech,
                 library: values.library,
-                satisfiedWithService: true,
+                serviceSatisfaction: values.serviceSatisfaction,
                 message: values.message,
             }
             dispatch(createFeedbackActions(creatFeedbackObject))
@@ -241,6 +236,25 @@ function FeedbackCreate() {
                             className={allClass("text-field", "formInput", mdl)} />
                     </div>
                     <small style={{ color: "red" }}>{touched.message ? errors.message : ""}</small>
+
+
+                    <div>
+                        <div className={allClass("", "formField col", mdl)}>
+                            <label className={mdl.formLable} > Are you satisfied with our service?:</label>
+                            {console.log("serviceSatisfaction", values.serviceSatisfaction)}
+                            <div className="switch__serviceSatisfaction">
+                                <input
+                                    type="checkbox"
+                                    id="serviceSatisfaction"
+                                    name="serviceSatisfaction"
+                                    checked={values.serviceSatisfaction}
+                                    onChange={handleChange}
+                                />
+                                <label htmlFor="serviceSatisfaction"></label>
+                            </div>
+                        </div>
+                    </div>
+
                     <div className="field-btn">
                         <button type="submit" className={allClass("btn btn-success", "buttonStyl", mdl)}>Send Feedback</button>
                         <button type="reset" onClick={() => resetForm()} className={allClass("btn btn-secondary", "buttonStyl", mdl)} >Reset</button>

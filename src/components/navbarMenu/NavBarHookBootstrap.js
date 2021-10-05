@@ -121,6 +121,13 @@ function NavBarHookBootstrap(props) {
                                         </NavDropdown.Item>
                                     </NavDropdown>
                                 </Nav>
+                                <Nav className="mr-auto">
+                                    <NavLink exact to='/signalr' >
+                                        <div className={allClass("", "link", mdl)}>
+                                            {t("Signalr")}
+                                        </div>
+                                    </NavLink>
+                                </Nav>
                             </Navbar.Collapse>
                         </Fragment>)
                         : isAuthenticated && userRole === "manager" ?
@@ -130,11 +137,6 @@ function NavBarHookBootstrap(props) {
                                         <NavLink exact to='/' >
                                             <div className={allClass("", "link", mdl)}>
                                                 {t("Home")}
-                                            </div>
-                                        </NavLink>
-                                        <NavLink exact to='/about'>
-                                            <div className={allClass("", "link", mdl)}>
-                                                <div className={allClass("", "link", mdl)}>{t("About")}</div>
                                             </div>
                                         </NavLink>
                                         <NavLink exact to='/images'>
@@ -236,11 +238,6 @@ function NavBarHookBootstrap(props) {
                                                     {t("Home")}
                                                 </div>
                                             </NavLink>
-                                            <NavLink exact to='/about'>
-                                                <div className={allClass("", "link", mdl)}>
-                                                    <div className={allClass("", "link", mdl)}>{t("About")}</div>
-                                                </div>
-                                            </NavLink>
                                             <NavLink exact to='/images'>
                                                 <div className={allClass("", "link", mdl)}>
                                                     <div className={allClass("", "link", mdl)}>{t("Images")}</div>
@@ -318,9 +315,6 @@ function NavBarHookBootstrap(props) {
                                             <NavLink exact to='/about'>
                                                 <div className={allClass("", "link", mdl)}>{t("About")}</div>
                                             </NavLink>
-                                            <NavLink exact to='/about'>
-                                                <div className={allClass("", "link", mdl)}>{t("Work")}</div>
-                                            </NavLink>
                                             <NavLink exact to='/images'>
                                                 <div className={allClass("", "link", mdl)}>{t("Images")}</div>
                                             </NavLink>
@@ -332,11 +326,7 @@ function NavBarHookBootstrap(props) {
                                                 <div className={allClass("", "link", mdl)}>{t("feedback")}</div>
                                             </NavLink>
 
-                                            <NavLink exact to='/signalr' >
-                                                <div className={allClass("", "link", mdl)}>
-                                                    {t("Signalr")}
-                                                </div>
-                                            </NavLink>
+
                                         </Nav>
                                         <Nav>
                                             <NavDropdown title={t("languages")} id="collasible-nav-dropdown">
@@ -372,6 +362,13 @@ function NavBarHookBootstrap(props) {
                                                     </NavLink>
                                                 </NavDropdown.Item>
                                             </NavDropdown>
+                                        </Nav>
+                                        <Nav className="mr-auto">
+                                            <NavLink exact to='/signalr' >
+                                                <div className={allClass("", "link", mdl)}>
+                                                    {t("Signalr")}
+                                                </div>
+                                            </NavLink>
                                         </Nav>
                                     </Navbar.Collapse>
                                 </Fragment>)

@@ -129,7 +129,7 @@ function EmployeeRetrieve(props) {
                                             <span title={(employee.userActivationStatus !== undefined && employee.userActivationStatus === "activate") ? t("Activate") : t("Deactivate")}>
                                                 <div className="switch-primary" >
                                                     <input type="checkbox" id={JSON.stringify(employee)} onChange={(e) => handleShowEmployeeActivationModal(employee)} checked={employee.userActivationStatus === "activate" ? true : false} />
-                                                    <label for={JSON.stringify(employee)}></label>
+                                                    <label htmlFor={JSON.stringify(employee)}></label>
                                                 </div>
                                             </span>
                                         </td>

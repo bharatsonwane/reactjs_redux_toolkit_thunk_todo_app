@@ -36,7 +36,6 @@ export const feedbackSlice = createSlice({
                 state.isLoading = true
             })
             .addCase(retrieveFeedbackActions.fulfilled, (state, action) => {
-                console.log("bharatAction", action)
                 state.isLoading = false;
                 state.retrieveFeedbackResponse = action.payload;
             })
