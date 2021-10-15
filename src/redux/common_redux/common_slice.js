@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { isOnlineNetworkActions, sideNavbarMenueShowActions } from "./constant_action"
+import { isOnlineNetworkActions, sideNavbarMenueShowActions } from "./common_action"
 
 const initialCompetitionState = {
     isLoading: false,
@@ -9,8 +9,8 @@ const initialCompetitionState = {
 };
 
 
-export const constantSlice = createSlice({
-    name: "constantReducer",
+export const commonSlice = createSlice({
+    name: "commonReducer",
     initialState: initialCompetitionState,
     reducers: {},
     extraReducers:
