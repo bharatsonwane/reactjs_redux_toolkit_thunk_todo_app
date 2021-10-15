@@ -7,7 +7,7 @@ import { feedbackSlice } from "./feedback_redux/feedback_slice";
 
 //Combined all reducer to root reducer
 export const rootReducer = combineReducers({
-  commoReducer: commonSlice.reducer,
+  commonReducer: commonSlice.reducer,
   userReducer: userSlice.reducer,
   employeeReducer: employeeSlice.reducer,
   taskReducer: taskSlice.reducer,
