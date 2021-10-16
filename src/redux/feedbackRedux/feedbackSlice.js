@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { createFeedbackActions, retrieveFeedbackActions } from "./feedback_action"
+import { createFeedbackActions, retrieveFeedbackActions } from "./feedbackAction"
 
 const initialCompetitionState = {
     isLoading: false,

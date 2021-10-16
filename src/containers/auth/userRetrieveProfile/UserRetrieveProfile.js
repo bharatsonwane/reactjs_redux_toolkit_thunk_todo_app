@@ -7,7 +7,7 @@ import { useHistory, Link, NavLink } from "react-router-dom"
 import { useSelector, useDispatch } from 'react-redux'
 import { toast } from 'react-toastify';
 import { useTranslation } from 'react-i18next';
-import { retrieveUserProfileActions } from 'src/redux/user_redux/user_action';
+import { retrieveUserProfileActions } from 'src/redux/userRedux/userAction';
 
 
 

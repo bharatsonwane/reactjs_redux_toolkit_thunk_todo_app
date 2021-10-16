@@ -4,7 +4,7 @@ import { usePrevious } from 'src/helper/customHooks/customHooks' // custome useS
 import { useParams, Link } from "react-router-dom"
 import mdl from "./TaskRetrieveDetail.module.css"
 import { allClass } from 'src/helper/customHooks/customModuleClassMethod'
-import { retrieveTaskActions, deleteTaskActions } from "src/redux/task_redux/task_action"
+import { retrieveTaskActions, deleteTaskActions } from "src/redux/taskRedux/taskAction"
 import { toast } from 'react-toastify';
 
 

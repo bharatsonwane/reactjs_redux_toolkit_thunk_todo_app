@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { createEmployeeActions, retrieveEmployeeListActions, retrieveEmployeeActions, updateEmployeeActions, updateEmployeeActivationStatusActions, deleteEmployeeActions } from "./employee_action"
+import { createEmployeeActions, retrieveEmployeeListActions, retrieveEmployeeActions, updateEmployeeActions, updateEmployeeActivationStatusActions, deleteEmployeeActions } from "./employeeAction"
 
 const initialCompetitionState = {
     isLoading: false,

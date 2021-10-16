@@ -7,7 +7,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { useTranslation } from "react-i18next";
 import { useFormik, Field } from "formik";
 import * as yup from "yup";
-import { createFeedbackActions } from 'src/redux/feedback_redux/feedback_action';
+import { createFeedbackActions } from 'src/redux/feedbackRedux/feedbackAction';
 
 
 

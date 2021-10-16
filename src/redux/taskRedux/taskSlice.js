@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { createTaskActions, retrieveTaskListActions, retrieveTaskActions, updateTaskActions, deleteTaskActions, updateTaskCompleteStatusActions, updateTaskTestingReportActions } from "./task_action"
+import { createTaskActions, retrieveTaskListActions, retrieveTaskActions, updateTaskActions, deleteTaskActions, updateTaskCompleteStatusActions, updateTaskTestingReportActions } from "./taskAction"
 
 const initialCompetitionState = {
     isLoading: false,

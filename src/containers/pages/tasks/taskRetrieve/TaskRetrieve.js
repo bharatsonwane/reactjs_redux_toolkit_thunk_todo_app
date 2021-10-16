@@ -5,7 +5,7 @@ import { useHistory } from "react-router-dom"
 import mdl from './taskRetrieve.module.css'
 import { allClass } from 'src/helper/customHooks/customModuleClassMethod'
 import { toast } from 'react-toastify';
-import { retrieveTaskListActions, deleteTaskActions, updateTaskCompleteStatusActions, updateTaskTestingReportActions } from "src/redux/task_redux/task_action"
+import { retrieveTaskListActions, deleteTaskActions, updateTaskCompleteStatusActions, updateTaskTestingReportActions } from "src/redux/taskRedux/taskAction"
 
 
 

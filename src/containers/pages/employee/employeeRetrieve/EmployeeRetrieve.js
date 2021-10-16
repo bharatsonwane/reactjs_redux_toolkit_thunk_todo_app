@@ -5,7 +5,7 @@ import { useHistory } from "react-router-dom"
 import mdl from './employeeRetrieve.module.css'
 import { allClass } from 'src/helper/customHooks/customModuleClassMethod'
 import { toast } from 'react-toastify';
-import { retrieveEmployeeListActions, deleteEmployeeActions } from "src/redux/employee_redux/employee_action"
+import { retrieveEmployeeListActions, deleteEmployeeActions } from "src/redux/employeeRedux/employeeAction"
 import { useTranslation } from "react-i18next";
 import EmployeeActivationModal from './content/EmployeeActivationModal'
 

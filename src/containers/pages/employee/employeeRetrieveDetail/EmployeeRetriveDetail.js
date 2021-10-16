@@ -4,7 +4,7 @@ import { usePrevious } from 'src/helper/customHooks/customHooks' // custome useS
 import { useParams, Link } from "react-router-dom"
 import mdl from "./employeeRetrieveDetail.module.css"
 import { allClass } from 'src/helper/customHooks/customModuleClassMethod'
-import { retrieveEmployeeActions, deleteEmployeeActions } from "src/redux/employee_redux/employee_action"
+import { retrieveEmployeeActions, deleteEmployeeActions } from "src/redux/employeeRedux/employeeAction"
 import { toast } from 'react-toastify';
 
 

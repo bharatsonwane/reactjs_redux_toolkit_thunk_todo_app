@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import Cookies from 'js-cookie';
-import { registerUserActions, signInUserActions, retrieveUserProfileActions, } from "./user_action"
+import { registerUserActions, signInUserActions, retrieveUserProfileActions, } from "./userAction"
 
 
 const initialCompetitionState = {

@@ -5,7 +5,7 @@ import { useHistory, Link } from "react-router-dom"
 import mdl from "./TaskForm.module.css"
 import { allClass } from 'src/helper/customHooks/customModuleClassMethod'
 import { toast } from 'react-toastify';
-import { createTaskActions, updateTaskActions } from "src/redux/task_redux/task_action"
+import { createTaskActions, updateTaskActions } from "src/redux/taskRedux/taskAction"
 
 function TaskForm(props) {
     // // ----------Localization hooks & Router Hooks-------------

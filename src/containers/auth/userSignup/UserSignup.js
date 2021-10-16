@@ -4,7 +4,7 @@ import { allClass } from 'src/helper/customHooks/customModuleClassMethod';
 import { useTranslation } from 'react-i18next';
 import { useHistory, Link, NavLink } from "react-router-dom"
 import { useSelector, useDispatch } from 'react-redux'
-import { registerUserActions } from "src/redux/user_redux/user_action"
+import { registerUserActions } from "src/redux/userRedux/userAction"
 import { useStateCallback, usePrevious } from 'src/helper/customHooks/customHooks' // custome useStateCallback hook
 import { toast } from 'react-toastify';
 

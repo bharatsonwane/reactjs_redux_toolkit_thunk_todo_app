@@ -5,7 +5,7 @@ import mdl from "./employeeForm.module.css"
 import { useHistory, Link } from "react-router-dom"
 import { useSelector, useDispatch } from 'react-redux'
 import { useTranslation } from "react-i18next";
-import { createEmployeeActions } from 'src/redux/employee_redux/employee_action'
+import { createEmployeeActions } from 'src/redux/employeeRedux/employeeAction'
 import { toast } from 'react-toastify';
 
 /**

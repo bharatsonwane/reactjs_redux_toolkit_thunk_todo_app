@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { useHistory } from "react-router-dom"
 import { useParams } from "react-router-dom"
 import TaskForm from '../taskForm/TaskForm'
-import { retrieveTaskActions } from 'src/redux/task_redux/task_action'
+import { retrieveTaskActions } from 'src/redux/taskRedux/taskAction'
 import { toast } from 'react-toastify';
 
 

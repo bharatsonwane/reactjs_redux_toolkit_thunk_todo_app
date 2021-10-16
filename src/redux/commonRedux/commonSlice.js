@@ -1,7 +1,7 @@
 import { createSlice, isAnyOf } from "@reduxjs/toolkit";
-import { isOnlineNetworkActions, sideNavbarMenueShowActions } from "./common_action"
-import { retrieveTaskListActions, } from "../task_redux/task_action"
-import { retrieveEmployeeListActions } from "../employee_redux/employee_action"
+import { isOnlineNetworkActions, sideNavbarMenueShowActions } from "./commonAction"
+import { retrieveTaskListActions, } from "../taskRedux/taskAction"
+import { retrieveEmployeeListActions } from "../employeeRedux/employeeAction"
 
 
 const initialCompetitionState = {

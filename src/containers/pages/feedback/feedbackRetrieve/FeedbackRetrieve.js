@@ -5,8 +5,8 @@ import { useHistory } from "react-router-dom"
 import mdl from './taskRetrieve.module.css'
 import { allClass } from 'src/helper/customHooks/customModuleClassMethod'
 import { toast } from 'react-toastify';
-import { retrievefeedbackListActions, deleteTaskActions, updateTaskCompleteStatusActions, updateTaskTestingReportActions } from "src/redux/task_redux/task_action"
-import { retrieveFeedbackActions } from "src/redux/feedback_redux/feedback_action"
+import { retrievefeedbackListActions, deleteTaskActions, updateTaskCompleteStatusActions, updateTaskTestingReportActions } from "src/redux/taskRedux/taskAction"
+import { retrieveFeedbackActions } from "src/redux/feedbackRedux/feedbackAction"
 
 
 import detailInfoSvgIcon from "src/assets/svg/iconmonstr-info-6.svg"
