@@ -1,6 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
 import axiosConfig from 'src/helper/config/axiosConfig';
-import { store } from "src/redux/store"
+import store from "src/redux/store"
 
 
 // // CREATE Employee ACTIONS

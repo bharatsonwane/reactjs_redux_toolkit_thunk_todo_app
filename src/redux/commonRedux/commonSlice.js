@@ -34,5 +34,14 @@ export const commonSlice = createSlice({
                 .addMatcher(isAnyOf(retrieveEmployeeListActions.fulfilled, retrieveTaskListActions.fulfilled), (state, action) => {
                     console.log(".addMatcher with isAnyOf for multiple actions", action)
                 })
+
+                // // *** .addMatcher with isAnyOf for multiple actions ***
+                .addMatcher(isAnyOf("true"), (state, action) => {
+                    let actionTypeArray = ["MODAL_CONFIRM", "MODAL_PASSWORDLOST", "MODAL_NEW_PIT", "MODAL_NEW_PATTERN", "MODAL_SURVEY_IMPORT"]
+                    let testActionTypeInclude = actionTypeArray.includes(action.type)
+                    if (testActionTypeInclude) {
+                        state.modal = action.modal;
+                    }
+                })
         },
 });
