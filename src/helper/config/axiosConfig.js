@@ -1,5 +1,6 @@
 import axios from "axios";
 import Cookies from 'js-cookie';
+import history from "src/helper/history/history"
 
 import { apiBaseURL } from './baseURLconfig';
 
@@ -50,7 +51,8 @@ const axiosConfig = () => {
                 //dispatch action using store to show token expire popup-----
                 // store.dispatch(tokenExpiryAction.start());
                 // Cookies.remove('reduxToolkitToken')
-                window.location.pathname = "/"
+                // window.location.pathname = "/"
+                history.push("/")
                 return new Promise((resolve, reject) => {
                     reject(error);
                 });

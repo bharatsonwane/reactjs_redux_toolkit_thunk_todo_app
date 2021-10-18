@@ -1,6 +1,7 @@
 import React, { Fragment } from 'react'
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
-
+import { ConnectedRouter } from 'connected-react-router'
+import history from "src/helper/history/history"
 //  layout wrapper
 import LayoutWrapper from "src/components/layout/LayoutWrapper"
 
@@ -20,26 +21,27 @@ import Contact from "src/containers/pages/contact/Contact"
 function Routes() {
 
 
-
     return (
         <Fragment>
             <BrowserRouter>
-                <LayoutWrapper>
-                    <div className="App">
-                        <Switch>
-                            <Route path="/user" render={(props) => <AuthRoutes {...props} />} />
-                            <Route path="/employee" render={(props) => <EmployeeRoutes {...props} />} />
-                            <Route path="/task" render={(props) => <TaskRoutes {...props} />} />
-                            <Route path="/feedback" render={(props) => <FeedbackRoutes {...props} />} />
-                            <Route path="/signalr" render={(props) => <SignalrRoutes {...props} />} />
-                            <Route exact path="/about" render={(props) => <About {...props} />} />
-                            <Route exact path="/images" render={(props) => <Images {...props} />} />
-                            <Route exact path="/contactus" render={(props) => <Contact {...props} />} />
-                            <Route exact path="/" render={(props) => <Home {...props} />} />
-                            <Route component={PageNotFound} />
-                        </Switch>
-                    </div>
-                </LayoutWrapper>
+                <ConnectedRouter history={history}>
+                    <LayoutWrapper>
+                        <div className="App">
+                            <Switch>
+                                <Route path="/user" render={(props) => <AuthRoutes {...props} />} />
+                                <Route path="/employee" render={(props) => <EmployeeRoutes {...props} />} />
+                                <Route path="/task" render={(props) => <TaskRoutes {...props} />} />
+                                <Route path="/feedback" render={(props) => <FeedbackRoutes {...props} />} />
+                                <Route path="/signalr" render={(props) => <SignalrRoutes {...props} />} />
+                                <Route exact path="/about" render={(props) => <About {...props} />} />
+                                <Route exact path="/images" render={(props) => <Images {...props} />} />
+                                <Route exact path="/contactus" render={(props) => <Contact {...props} />} />
+                                <Route exact path="/" render={(props) => <Home {...props} />} />
+                                <Route component={PageNotFound} />
+                            </Switch>
+                        </div>
+                    </LayoutWrapper>
+                </ConnectedRouter>
             </BrowserRouter>
         </Fragment>
     )
