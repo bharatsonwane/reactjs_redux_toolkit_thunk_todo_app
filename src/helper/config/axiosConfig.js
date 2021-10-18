@@ -20,14 +20,14 @@ const axiosConfig = () => {
 
     // interceptors Request------------------------------------
     instance.interceptors.request.use(
-        (config) => {
+        async (config) => {
             let cookieToken = Cookies.get('reduxToolkitToken');
             let token = cookieToken ? cookieToken : '';
 
             if (!!token) {
                 config.headers = {
                     ...config.headers,
-                    'Authorization': "bearer " + token
+                    Authorization: "bearer " + token
                 };
             }
             return config;

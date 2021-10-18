@@ -4,7 +4,7 @@ import axiosConfig from 'src/helper/config/axiosConfig';
 
 // // CHECK NETWRK STATUS ACTION
 export const isOnlineNetworkActions = createAction(
-    'constant/onlineNewtwork',
+    'common/onlineNewtwork',
     (model) => {
         return { payload: model }
     }
@@ -12,7 +12,7 @@ export const isOnlineNetworkActions = createAction(
 
 // // HIDE / SHOW SIDEBAR MENUE ACTION
 export const sideNavbarMenueShowActions = createAction(
-    'constant/sideNavbarMenueShow',
+    'common/sideNavbarMenueShow',
     (model) => {
         if (model === false) {
             return { payload: true }
