@@ -1,7 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
 import axiosConfig from 'src/helper/config/axiosConfig';
 import store from "src/redux/store"
-
+import { toolkitTestFirstAction, commonTestFirstAction, commonTestSecondAction, } from "../commonRedux/commonAction"
 
 // // CREATE TASK ACTIONS
 export const createTaskActions = createAsyncThunk(
@@ -20,9 +20,12 @@ export const createTaskActions = createAsyncThunk(
 // // RETRIEVE TASK LIST ACTION
 export const retrieveTaskListActions = createAsyncThunk(
     "task/retrieveList",
-    async (model, { rejectWithValue }) => {
+    async (model, { rejectWithValue, dispatch }) => {
         try {
             const response = await axiosConfig().get(`/todo/retrieveList`)
+            dispatch(toolkitTestFirstAction())
+            dispatch(commonTestFirstAction())
+            dispatch(commonTestSecondAction())
             return response.data;
         } catch (error) {
             return rejectWithValue([], { data: error.response.data });

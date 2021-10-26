@@ -22,3 +22,52 @@ export const sideNavbarMenueShowActions = createAction(
         }
     }
 )
+
+// // For Testing Purpose ----------------------------------------------
+export const toolkitTestFirstAction = createAction(
+    'common/toolkitTestFirstAction',
+    (model) => {
+        return { payload: model }
+    }
+)
+
+export const toolkitTestSecondAction = createAction(
+    'common/toolkitTestSecondAction',
+    (model) => {
+        return { payload: model }
+    }
+)
+
+
+export const COMMON_TEST_FIRST = "COMMON_TEST_FIRST";
+export const COMMON_TEST_SECOND = "COMMON_TEST_SECOND";
+export const COMMON_TEST_THIRD = "COMMON_TEST_THIRD";
+export const COMMON_TEST_FOURTH = "COMMON_TEST_FOURTH";
+
+export const commonTestFirstAction = (model) => {
+    return {
+        type: COMMON_TEST_FIRST,
+        model
+    }
+}
+
+export const commonTestSecondAction = (model) => {
+    return {
+        type: COMMON_TEST_SECOND,
+        model
+    }
+}
+
+export const commonTestThirdAction = (model) => {
+    return {
+        type: COMMON_TEST_THIRD,
+        model
+    }
+}
+
+export const commonTestFourthAction = (model) => {
+    return {
+        type: COMMON_TEST_FOURTH,
+        model
+    }
+}

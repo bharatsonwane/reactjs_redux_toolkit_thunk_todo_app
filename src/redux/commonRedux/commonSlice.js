@@ -1,8 +1,11 @@
 import { createSlice, isAnyOf } from "@reduxjs/toolkit";
-import { isOnlineNetworkActions, sideNavbarMenueShowActions } from "./commonAction"
-import { retrieveTaskListActions, } from "../taskRedux/taskAction"
-import { retrieveEmployeeListActions } from "../employeeRedux/employeeAction"
-
+import {
+    isOnlineNetworkActions, sideNavbarMenueShowActions,
+    toolkitTestFirstAction, toolkitTestSecondAction,
+    COMMON_TEST_FIRST, COMMON_TEST_SECOND, COMMON_TEST_THIRD, COMMON_TEST_FOURTH,
+} from "./commonAction";
+import { retrieveTaskListActions, } from "../taskRedux/taskAction";
+import { retrieveEmployeeListActions } from "../employeeRedux/employeeAction";
 
 const initialCompetitionState = {
     isLoading: false,
@@ -29,18 +32,17 @@ export const commonSlice = createSlice({
                     state.isSideNavbarMenuShow = action.payload;
                 })
 
-
                 // // *** .addMatcher with isAnyOf for multiple actions ***
-                .addMatcher(isAnyOf(retrieveEmployeeListActions.fulfilled, retrieveTaskListActions.fulfilled), (state, action) => {
+                .addMatcher(isAnyOf(toolkitTestFirstAction, toolkitTestSecondAction, retrieveEmployeeListActions.fulfilled, retrieveTaskListActions.fulfilled), (state, action) => {
                     console.log(".addMatcher with isAnyOf for multiple actions", action)
                 })
 
                 // // *** .addMatcher with isAnyOf for multiple actions ***
                 .addMatcher(isAnyOf("true"), (state, action) => {
-                    let actionTypeArray = ["MODAL_CONFIRM", "MODAL_PASSWORDLOST", "MODAL_NEW_PIT", "MODAL_NEW_PATTERN", "MODAL_SURVEY_IMPORT"]
+                    let actionTypeArray = [COMMON_TEST_FIRST, COMMON_TEST_SECOND, COMMON_TEST_THIRD, COMMON_TEST_FOURTH]
                     let testActionTypeInclude = actionTypeArray.includes(action.type)
                     if (testActionTypeInclude) {
-                        state.modal = action.modal;
+                        console.log(".addMatcher with isAnyOf('true') for multiple actions With Types", action)
                     }
                 })
         },
