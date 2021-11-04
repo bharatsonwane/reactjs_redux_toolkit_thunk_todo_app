@@ -32,6 +32,10 @@ export const commonSlice = createSlice({
                     state.isSideNavbarMenuShow = action.payload;
                 })
 
+                .addCase(COMMON_TEST_FIRST, (state, action) => {
+                    console.log("addCase with directly action type.")
+                })
+
                 // // *** .addMatcher with isAnyOf for multiple actions ***
                 .addMatcher(isAnyOf(toolkitTestFirstAction, toolkitTestSecondAction, retrieveEmployeeListActions.fulfilled, retrieveTaskListActions.fulfilled), (state, action) => {
                     console.log(".addMatcher with isAnyOf for multiple actions", action)
