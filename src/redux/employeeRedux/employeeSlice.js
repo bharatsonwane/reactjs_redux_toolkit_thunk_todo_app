@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { REHYDRATE } from 'redux-persist/lib/constants';
 import { createEmployeeActions, retrieveEmployeeListActions, retrieveEmployeeActions, updateEmployeeActions, updateEmployeeActivationStatusActions, deleteEmployeeActions } from "./employeeAction"
 
 const initialCompetitionState = {
@@ -108,6 +109,13 @@ export const employeeSlice = createSlice({
             .addCase(deleteEmployeeActions.rejected, (state, action) => {
                 state.isLoading = false;
                 state.deleteEmployeeError = action.meta;
+            })
+
+            // rehydrate
+            .addCase(REHYDRATE, (state, action) => {
+                if (action.payload && action.payload.employeeReducer) {
+                    state.retrieveEmployeeListResponse = action.payload.employeeReducer.retrieveEmployeeListResponse
+                }
             })
     },
 });

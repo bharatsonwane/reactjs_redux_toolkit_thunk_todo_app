@@ -8,8 +8,11 @@ import "src/assets/sass/main.scss"
 
 // // redux 
 import { Provider } from 'react-redux'
-import store from "./redux/store"
+// import store from "./redux/store"
 
+// // redux persist config
+import store, { persistor } from "./redux/storeReduxPersist"
+import { PersistGate } from 'redux-persist/integration/react'
 
 // // localization 
 import "src/utils/locales/i18n"
@@ -18,13 +21,16 @@ import "src/utils/locales/i18n"
 import Routes from 'src/containers/Routes';
 import SplashScreen from 'src/containers/screens/SplashScreen';
 
+
 function App() {
 
   return (
     <Fragment >
       <Suspense fallback={<SplashScreen />}>
         <Provider store={store} >
-          <Routes />
+          <PersistGate loading={null} persistor={persistor}>
+            <Routes />
+          </PersistGate>
         </Provider>
       </Suspense>
     </Fragment>

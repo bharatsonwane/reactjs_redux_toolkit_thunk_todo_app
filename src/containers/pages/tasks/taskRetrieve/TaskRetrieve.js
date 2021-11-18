@@ -52,7 +52,7 @@ function TaskRetrieve(props) {
     // called when its dependency changes i.e. like componentDidUpdate()
     useEffect(() => {
         if (prevPropsState) {
-            if (prevPropsState.retrieveTaskListResponse !== retrieveTaskListResponse && retrieveTaskListResponse) {
+            if (retrieveTaskListResponse) {
                 // setTaskList(JSON.parse(retrieveTaskListResponse))
                 setTaskList(retrieveTaskListResponse)
             }

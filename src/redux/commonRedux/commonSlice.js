@@ -1,4 +1,5 @@
 import { createSlice, isAnyOf } from "@reduxjs/toolkit";
+import { REHYDRATE } from 'redux-persist/lib/constants';
 import {
     isOnlineNetworkActions, sideNavbarMenueShowActions,
     toolkitTestFirstAction, toolkitTestSecondAction,
@@ -34,6 +35,13 @@ export const commonSlice = createSlice({
 
                 .addCase(COMMON_TEST_FIRST, (state, action) => {
                     console.log("addCase with directly action type.")
+                })
+
+
+
+                // rehydrate
+                .addCase(REHYDRATE, (state, action) => {
+                    // console.log("rehydrateAction", action)
                 })
 
                 // // *** .addMatcher with isAnyOf for multiple actions ***

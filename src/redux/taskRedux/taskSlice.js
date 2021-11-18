@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { REHYDRATE } from 'redux-persist/lib/constants';
 import { createTaskActions, retrieveTaskListActions, retrieveTaskActions, updateTaskActions, deleteTaskActions, updateTaskCompleteStatusActions, updateTaskTestingReportActions } from "./taskAction"
 
 const initialCompetitionState = {
@@ -123,6 +124,14 @@ export const taskSlice = createSlice({
             .addCase(updateTaskTestingReportActions.rejected, (state, action) => {
                 state.isLoading = false;
                 state.updateTaskTestingReportError = action.meta;
+            })
+
+
+            // rehydrate
+            .addCase(REHYDRATE, (state, action) => {
+                if (action.payload && action.payload.taskReducer) {
+                    state.retrieveTaskListResponse = action.payload.taskReducer.retrieveTaskListResponse
+                }
             })
     },
 });

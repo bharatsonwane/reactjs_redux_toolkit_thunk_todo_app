@@ -28,7 +28,7 @@ function EmployeeRetrieve(props) {
     // // 2nd way to get data ==> by using useSelector
     const reducerState = useSelector((state) => (state));
     let employeeReducer = reducerState.employeeReducer
-
+    console.log("employeeReducer", employeeReducer)
 
     // // ----------hooks useState--------------------------------------------------
     const [state, setState] = useState({
@@ -53,7 +53,7 @@ function EmployeeRetrieve(props) {
     // called when its dependency changes i.e. like componentDidUpdate()
     useEffect(() => {
         if (prevPropsState) {
-            if (prevPropsState.retrieveEmployeeListResponse !== retrieveEmployeeListResponse && retrieveEmployeeListResponse) {
+            if (retrieveEmployeeListResponse) {
                 let newState = { ...state }
                 newState.employeeList = retrieveEmployeeListResponse
                 setState({ ...newState })

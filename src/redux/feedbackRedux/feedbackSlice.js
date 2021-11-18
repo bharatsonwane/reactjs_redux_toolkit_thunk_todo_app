@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { REHYDRATE } from 'redux-persist/lib/constants';
 import { createFeedbackActions, retrieveFeedbackActions } from "./feedbackAction"
 
 const initialCompetitionState = {
@@ -43,6 +44,11 @@ export const feedbackSlice = createSlice({
                 console.log("bharatAction", action)
                 state.isLoading = false;
                 // state.retrieveFeedbackError = action.meta;
+            })
+
+            // rehydrate
+            .addCase(REHYDRATE, (state, action) => {
+                // console.log("rehydrateAction", action)
             })
     },
 });

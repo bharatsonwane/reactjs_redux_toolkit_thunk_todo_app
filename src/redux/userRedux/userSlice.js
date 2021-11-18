@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import Cookies from 'js-cookie';
+import { REHYDRATE } from 'redux-persist/lib/constants';
 import { registerUserActions, signInUserActions, retrieveUserProfileActions, } from "./userAction"
 
 
@@ -67,6 +68,12 @@ export const userSlice = createSlice({
       .addCase(retrieveUserProfileActions.rejected, (state, action) => {
         state.isLoading = false;
         state.retrieveUserProfileError = action.meta;
+      })
+
+
+      // rehydrate
+      .addCase(REHYDRATE, (state, action) => {
+        // console.log("rehydrateAction", action)
       })
   },
 });
