@@ -1,6 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
 import axiosConfig from 'src/helper/config/axiosConfig';
-import store from "src/redux/store"
 import { toolkitTestFirstAction, commonTestFirstAction, commonTestSecondAction, } from "../commonRedux/commonAction"
 
 // // CREATE TASK ACTIONS
@@ -63,10 +62,10 @@ export const updateTaskActions = createAsyncThunk(
 // // DELETE TASK ACTION
 export const deleteTaskActions = createAsyncThunk(
     "task/deleteTask",
-    async (model, { rejectWithValue }) => {
+    async (model, { rejectWithValue, dispatch }) => {
         try {
             const response = await axiosConfig().delete(`/todo/${model}`)
-            store.dispatch(retrieveTaskListActions()) // // DISPATCH RETRIEVE TASK ACTIONS
+            dispatch(retrieveTaskListActions()) // // DISPATCH RETRIEVE TASK ACTIONS
             return response.data;
         } catch (error) {
             return rejectWithValue([], { data: error.response.data });
@@ -78,10 +77,10 @@ export const deleteTaskActions = createAsyncThunk(
 // // COMPLETE TASK ACTION
 export const updateTaskCompleteStatusActions = createAsyncThunk(
     "task/updateTaskCompleteStatus",
-    async (model, { rejectWithValue }) => {
+    async (model, { rejectWithValue, dispatch }) => {
         try {
             const response = await axiosConfig().put(`/todo/updateCompleteStatus`, model)
-            store.dispatch(retrieveTaskListActions()) // // DISPATCH RETRIEVE TASK ACTIONS
+            dispatch(retrieveTaskListActions()) // // DISPATCH RETRIEVE TASK ACTIONS
             return response.data;
         } catch (error) {
             return rejectWithValue([], { data: error.response.data });
@@ -93,10 +92,10 @@ export const updateTaskCompleteStatusActions = createAsyncThunk(
 // // COMPLETE TASK ACTION
 export const updateTaskTestingReportActions = createAsyncThunk(
     "task/updateTaskTestingReport",
-    async (model, { rejectWithValue }) => {
+    async (model, { rejectWithValue, dispatch }) => {
         try {
             const response = await axiosConfig().put(`/todo/updateTestingReport/`, model)
-            store.dispatch(retrieveTaskListActions()) // // DISPATCH RETRIEVE TASK ACTIONS
+            dispatch(retrieveTaskListActions()) // // DISPATCH RETRIEVE TASK ACTIONS
             return response.data;
         } catch (error) {
             return rejectWithValue([], { data: error.response.data });
