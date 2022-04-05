@@ -1,0 +1,22 @@
+
+.loadingOverlay {
+    .loadingOverlay__background{
+        position: absolute;
+        z-index: 999;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        background-color: blue;
+        opacity: 0.5;
+    }
+    
+    .text-center {
+        z-index: 999;
+        position: absolute;
+        display: block;
+        top: calc(50% - (58px / 2));
+        right: calc(50% - (58px / 2));
+        opacity: 1;
+    }
+}

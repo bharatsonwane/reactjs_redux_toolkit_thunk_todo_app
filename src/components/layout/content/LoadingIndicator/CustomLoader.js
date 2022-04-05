@@ -1,7 +1,6 @@
 import React, { Fragment, useMemo } from 'react';
 import { useSelector } from 'react-redux';
-import mdl from "./CustomLoader.module.scss"
-import Spinner from 'react-bootstrap/Spinner'
+import "./customLoader.scss"
 
 
 
@@ -27,8 +26,12 @@ export default function CustomLoader(props) {
         (getIsLoadingValue) ?
             (
                 <Fragment>
-                    <div className={mdl.customLoader}>
-                        <Spinner animation="border" variant="primary" />
+                    <div className="loadingOverlay">
+                        <div className="loadingOverlay__background" />
+                        <div className="text-center">
+                            <div className="spinner-border text-primary" role="status" />
+                            <p className="sr-only">Loading...</p>
+                        </div>
                     </div>
                 </Fragment>
             )
